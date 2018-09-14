@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="83f3b163-2397-41cd-aa9f-c53263c0fbff" name="Default" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file leaf-file-name="wp-athletics-admin-settings.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/wp-athletics-admin-settings.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="188">
+              <caret line="392" column="17" selection-start-line="392" selection-start-column="17" selection-end-line="392" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manage-events.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/admin/manage-events.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-2996" />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wpa-ajax.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-ajax.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="716" column="13" selection-start-line="716" selection-start-column="4" selection-end-line="716" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-athletics-functions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/wp-athletics-functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="413">
+              <caret line="50" column="90" selection-start-line="50" selection-start-column="73" selection-end-line="50" selection-end-column="90" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-athletics-db.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/includes/wp-athletics-db.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="488">
+              <caret line="1958" column="22" selection-start-line="1958" selection-start-column="22" selection-end-line="1958" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-athletics-en.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/lang/wp-athletics-en.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="435">
+              <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="38" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-athletics-it.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/lang/wp-athletics-it.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="465">
+              <caret line="31" selection-start-line="31" selection-end-line="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wp-athletics-simple-shortcodes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/includes/wp-athletics-simple-shortcodes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="92">
+              <caret line="169" column="74" selection-start-line="169" selection-start-column="57" selection-end-line="169" selection-end-column="74" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="wpa-functions.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-functions.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="218">
+              <caret line="2727" column="55" lean-forward="true" selection-start-line="2727" selection-start-column="55" selection-end-line="2727" selection-end-column="55" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="docker-compose.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="92" selection-start-line="10" selection-start-column="92" selection-end-line="10" selection-end-column="92" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>add_result_event_sub_type</find>
+      <find>beach</find>
+      <find>Terreno</find>
+      <find>tutti i terr</find>
+      <find>wp-athletics-manage-events</find>
+      <find>wpa_manage_events</find>
+      <find>wpa_get_event_results</find>
+      <find>get_event_results</find>
+      <find>editEventSubType</find>
+      <find>SubType</find>
+      <find>$this-&gt;create</find>
+      <find>Pace (mile)</find>
+      <find>this</find>
+      <find>column_pace_miles</find>
+      <find>center wpa-pace</find>
+      <find>wpa-pace</find>
+      <find>timeToPace</find>
+      <find>get_events_for_year</find>
+      <find>getEvents</find>
+    </findStrings>
+    <dirStrings>
+      <dir>$PROJECT_DIR$</dir>
+    </dirStrings>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/includes/wp-athletics-settings.php" />
+        <option value="$PROJECT_DIR$/docker-compose.yml" />
+        <option value="$PROJECT_DIR$/resources/scripts/wpa-functions.js" />
+        <option value="$PROJECT_DIR$/includes/lang/wp-athletics-it.php" />
+        <option value="$PROJECT_DIR$/includes/wp-athletics-db.php" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="7">
+    <option name="x" value="76" />
+    <option name="y" value="49" />
+    <option name="width" value="1672" />
+    <option name="height" value="1047" />
+  </component>
+  <component name="ProjectView">
+    <navigator proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+              <item name="includes" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+              <item name="plugins" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="wp-athletics" type="b2602c69:ProjectViewProjectNode" />
+              <item name="wp-athletics" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="scripts" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Course" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$USER_HOME$" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-1" y="31" width="1368" height="741" extended-state="7" />
+    <layout>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.3063197" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info id="Structure" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+    </layout>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/includes/wp-athletics-events.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4267" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-events.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1912" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-admin.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-315" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-my-results.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1845" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/wp-athletics-settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="31" column="23" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/admin/general-settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="291">
+          <caret line="213" column="104" selection-start-line="213" selection-start-column="104" selection-end-line="213" selection-end-column="104" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/wp-athletics-admin-settings.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="392" column="17" selection-start-line="392" selection-start-column="17" selection-end-line="392" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/admin/manage-events.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2996" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/wp-athletics-functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="413">
+          <caret line="50" column="90" selection-start-line="50" selection-start-column="73" selection-end-line="50" selection-end-column="90" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docker-compose.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="92" selection-start-line="10" selection-start-column="92" selection-end-line="10" selection-end-column="92" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="218">
+          <caret line="2727" column="55" lean-forward="true" selection-start-line="2727" selection-start-column="55" selection-end-line="2727" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/wp-athletics-simple-shortcodes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="169" column="74" selection-start-line="169" selection-start-column="57" selection-end-line="169" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/lang/wp-athletics-en.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="435">
+          <caret line="29" column="4" lean-forward="true" selection-start-line="29" selection-start-column="4" selection-end-line="29" selection-end-column="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/lang/wp-athletics-it.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" selection-start-line="31" selection-end-line="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/scripts/wpa-ajax.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="716" column="13" selection-start-line="716" selection-start-column="4" selection-end-line="716" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/includes/wp-athletics-db.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="488">
+          <caret line="1958" column="22" selection-start-line="1958" selection-start-column="22" selection-end-line="1958" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>
