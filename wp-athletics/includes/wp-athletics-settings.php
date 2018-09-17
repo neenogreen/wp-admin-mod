@@ -22,17 +22,10 @@ return array(
 	),
 
 	'default_terrain_categories' => array(
-		'R' => 'Road',
-		'T' => 'Track',
-		'XC' => 'XC',
-		'TR' => 'Trail',
-		'I' => 'Indoor',
-		'G' => 'Grass',
-		'B' => 'Beach',
 		'A' => 'Altro',
 		'Q' => 'Qualit&agrave',
 		'S' => 'Societ&agrave',
-		'QS' => 'Qualit&agrave/Societ&agrave'
+		'I' => 'Individuale'
 	),
 
 	'table_max_event_name_length' => 50,

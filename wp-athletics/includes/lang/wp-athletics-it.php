@@ -17,9 +17,10 @@ $common_lang = array(
 	'column_athlete_email' => 'Email',
 	'column_athlete_registered' => 'Registrato',
 	'column_event_location' => 'Luogo',
-	'column_category' => 'Distanza',
+	'column_category' => 'Categoria',
 	'column_time' => 'Tempo',
-	'column_pace' => 'Ritmo',
+	'column_points_class_qual' => 'Punti Qua.',
+	'column_pace' => 'Andatura',
 	'column_position' => 'Pos.',
 	'column_garmin' => 'Garmin',
 	'column_athlete_name' => 'Nome',
@@ -28,7 +29,7 @@ $common_lang = array(
 	'column_club_rank' => 'Posizione',
 	'column_result_count' => 'Result Count',
 	'column_event_shortcode' => 'Embed Code',
-	'column_pace_miles' => 'Passo',
+	'column_pace_miles' => 'Andatura',
 
 
 	// my results - profile
@@ -147,8 +148,8 @@ $common_lang = array(
 	'edit' => 'Modifica',
 
 	// misc
- 	'gender_M' => 'Maschio',
-	'gender_F' => 'Femmmina',
+ 	'gender_M' => 'M',
+	'gender_F' => 'F',
 	'gender_B' => 'Tutti i sessi',
 	'loading_dialog_text' => 'Attendere...',
 	'edit_event_dialog_title' => 'Modifica Evento',

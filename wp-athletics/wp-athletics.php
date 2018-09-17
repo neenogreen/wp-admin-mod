@@ -325,7 +325,7 @@ if(!class_exists('WP_Athletics')) {
 				define('WPA_VERSION_NUM', '1.1.7');
 
 			if (!defined('WPA_DB_VERSION') )
-				define('WPA_DB_VERSION', '1.7');
+				define('WPA_DB_VERSION', '1.7.2');
 			
 			if (!defined('WPA_DB_DISABLE_SQL_VIEW') )
 				define('WPA_DB_DISABLE_SQL_VIEW', get_option( 'wp-athletics-disable-sql-view', 'no' ) == 'yes');

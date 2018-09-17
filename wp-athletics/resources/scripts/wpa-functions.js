@@ -1888,6 +1888,8 @@ var WPA = {
 			jQuery('#addResultTimeMinutes').val(time.minutes);
 			jQuery('#addResultTimeSeconds').val(time.seconds);
 			jQuery('#addResultTimeMilliSeconds').val(time.milliseconds);
+			jQuery('#addPuntiQual').val(result.points_class_qual);
+
 			
 			if(!result.age_category) {
 				WPA.setAddResultAgeCategory();

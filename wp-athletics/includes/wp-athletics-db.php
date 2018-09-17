@@ -114,7 +114,10 @@ if(!class_exists('WP_Athletics_DB')) {
 				pending smallint(1) DEFAULT '0',
 				age_grade decimal(10,2) DEFAULT NULL,
 				UNIQUE KEY id (id),
-				KEY wpa_result_idx (gender,age_category,event_id,user_id)
+				KEY wpa_result_idx (gender,age_category,event_id,user_id),
+				points_class_qual integer(4),
+				points_soc_grup integer(4),
+				points_indiv integer(4)
 				);
 
 				CREATE TABLE $this->LOG_TABLE (
@@ -163,7 +166,7 @@ if(!class_exists('WP_Athletics_DB')) {
 		 */
 		public function create_view() {
 			global $wpdb;
-			$sql = 'CREATE OR REPLACE VIEW ' . $this->RESULT_VIEW . ' AS SELECT r.id, r.time, r.user_id, r.event_id, r.garmin_id, r.position, r.age_category, r.gender, r.pending, r.age_grade, r.date_created,
+			$sql = 'CREATE OR REPLACE VIEW ' . $this->RESULT_VIEW . ' AS SELECT r.id, r.time, r.user_id, r.event_id, r.garmin_id, r.position, r.age_category, r.gender, r.pending, r.age_grade, r.date_created, IFNULL(r.points_class_qual, 0) as points_class_qual, IFNULL(r.points_indiv, 0) as points_indiv, IFNULL(r.points_soc_grup, 0) as points_soc_grup,
 			e.event_cat_id, e.name as event_name, e.location as event_location, ec.name as category, ec.time_format, ec.type, ec.distance_meters,
 			e.date, e.sub_type_id as event_sub_type_id
 			FROM ' . $this->RESULT_TABLE . ' r
@@ -219,12 +222,14 @@ if(!class_exists('WP_Athletics_DB')) {
 		 */
 		public function get_event_results( $event_id, $include_club_rank = true) {
 
-            //$this->debug_to_console( "Ciao" );
+
 			global $wpdb;
 
 			$wpdb->query('SET @rank=0;');
 
+
 			$results = $wpdb->get_results(
+			$wpdb->prepare(
 					"
 					SELECT @rank:=@rank+1 AS 'rank', r.id, r.user_id, r.time, r.pending, r.age_grade, r.age_category, r.garmin_id, r.gender, r.position, ec.id as event_cat, ec.time_format, ec.distance_meters,
 					(SELECT display_name FROM wp_users WHERE id = r.user_id) as athlete_name, ec.name as distance, e.sub_type_id, e.name as event_name, date_format(date,'" . WPA_DATE_FORMAT . "') as event_date
@@ -232,8 +237,9 @@ if(!class_exists('WP_Athletics_DB')) {
 					LEFT JOIN $this->EVENT_TABLE e ON r.event_id = e.id
 					LEFT JOIN $this->EVENT_CAT_TABLE ec ON e.event_cat_id = ec.id
 					WHERE r.event_id = $event_id ORDER BY time asc
-					"
+					", array($event_id))
 			);
+
 
 			return $results;
 		}
@@ -569,6 +575,7 @@ if(!class_exists('WP_Athletics_DB')) {
 		public function get_results( $user_id, $request ) {
 			global $wpdb;
 
+
 			$extra_where = '';
 			$get_name = '"" as athlete_name';
 			$sEcho =  (int) $request['sEcho'];
@@ -667,7 +674,7 @@ if(!class_exists('WP_Athletics_DB')) {
 	
 				$results = $wpdb->get_results(
 					"
-					SELECT r.id, user_id, r.pending, r.age_grade, u.display_name as athlete_name, time, age_category, gender, date_created as result_date, garmin_id, position, event_id,
+					SELECT r.id, user_id, r.pending, r.age_grade, u.display_name as athlete_name, time, age_category, gender, date_created as result_date, garmin_id, position, r.points_class_qual,r.points_soc_grup,r.points_indiv, event_id,
 					event_name, event_location, event_sub_type_id, date_format(date,'" . WPA_DATE_FORMAT . "') as event_date, category, distance_meters, time_format, event_cat_id AS event_cat,
 					(CASE WHEN (date > DATE(NOW())) THEN 1 ELSE 0 END) AS is_future FROM $this->RESULT_VIEW r LEFT JOIN $this->USER_TABLE u ON user_id = u.id
 					$where $extra_where ORDER BY $sortCol $sortDir LIMIT $offset, $limit
@@ -689,7 +696,7 @@ if(!class_exists('WP_Athletics_DB')) {
 				
 				$results = $wpdb->get_results(
 					"
-					SELECT r.id, r.user_id, r.pending, r.age_grade, u.display_name as athlete_name, r.time, r.age_category, r.gender, r.date_created as result_date, r.garmin_id, r.position, e.id as event_id, e.name as event_name, e.location as event_location, e.sub_type_id AS event_sub_type_id,
+					SELECT r.id, r.user_id, r.pending, r.age_grade, u.display_name as athlete_name, r.time, r.age_category, r.gender, r.date_created as result_date, r.garmin_id, r.position, r.points_class_qual,r.points_soc_grup,r.points_indiv,e.id as event_id, e.name as event_name, e.location as event_location, e.sub_type_id AS event_sub_type_id,
 					date_format(e.date,'" . WPA_DATE_FORMAT . "') as event_date, ec.name as category, ec.distance_meters, ec.time_format, e.event_cat_id as event_cat,
 					(CASE WHEN (e.date > DATE(NOW())) THEN 1 ELSE 0 END) AS is_future FROM $this->RESULT_TABLE r
 					LEFT JOIN $this->EVENT_TABLE e ON r.event_id = e.id
@@ -841,7 +848,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			LEFT JOIN " . $this->EVENT_TABLE . " e ON r.event_id = e.id
 			LEFT JOIN " . $this->EVENT_CAT_TABLE . " ec1 ON e.event_cat_id = ec1.id " . $where . " ORDER BY " . $order_by . ")
 			d ON d.event_cat_id = ec.id WHERE d.time > 0 $show_all_records " . $group_by_and_order . $limit;
-
+            
 			$results = $wpdb->get_results( $sql );
 
 			$rank = 0;
@@ -1245,7 +1252,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			global $wpdb;
 			$result = $wpdb->get_row(
 				"
-				SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending
+				SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending, r.points_class_qual, r.points_soc_grup,r.points_indiv
 				FROM $this->RESULT_TABLE r WHERE r.id = $id
 				"
 			);
@@ -1990,6 +1997,9 @@ if(!class_exists('WP_Athletics_DB')) {
 		 */
 		function get_recent_results_by_date( $data ) {
 			global $wpdb;
+			//$this->debug_to_console( "Ciao" );
+
+			$params_prepared = array();
 
 			$where = 'l.type = "new_result"';
 			$month = $data['month'];
@@ -1997,21 +2007,22 @@ if(!class_exists('WP_Athletics_DB')) {
 
 			if( isset( $month ) && $month != 'all' ) {
 				$where = $where . ($where == '' ? '' : ' AND ');
-				$where = $where . 'MONTH(e.date) = ' . $month;
+				$where = $where . 'MONTH(e.date) = ' . '%s';
+                array_push($params_prepared, $month);
 			}
 
 			if( isset( $year ) && $year != 'all' ) {
 				$where = $where . ($where == '' ? '' : ' AND ');
-				$where = $where . 'YEAR(e.date) = ' . $year;
+				$where = $where . 'YEAR(e.date) = ' . '%s';
+				array_push($params_prepared, $year);
 			}
 
-			$sql = "SELECT date_format(e.date,'" . WPA_DATE_FORMAT . "') as display_date, MONTH(e.date) as month, e.event_cat_id, l.content, l.user_id, l.event_id from " .
+			$sql = "SELECT  date_format(e.date,'" . "%%d %%b %%Y" . "') as display_date, MONTH(e.date) as month, e.event_cat_id, l.content, l.user_id, l.event_id from " .
 			$this->LOG_TABLE . " l LEFT JOIN $this->EVENT_TABLE e ON l.event_id = e.id WHERE " .
 			$where . " ORDER BY e.date desc";
-
 			wpa_log($sql);
 
-			$results = $wpdb->get_results( $sql );
+			$results = $wpdb->get_results( $wpdb->prepare($sql,$params_prepared) );
 			$user_photos = array();
 
 			// now get profile photo values for unique users
