@@ -170,6 +170,14 @@ if ( $this->has_permission_to_manage() ) {
 				"mData": "time",
 				"mRender": WPA.renderTimeColumn
 			},{
+				"mData": "points_class_qual"
+			},
+			{
+				"mData": "points_soc_grup"
+			},
+			{
+				"mData": "points_indiv"
+			},{
 				"mData": "garmin_id",
 				"sWidth": "16px",
 				"mRender": WPA.renderActivityLinkColumn,
@@ -310,6 +318,15 @@ if ( $this->has_permission_to_manage() ) {
 					<th><?php echo $this->get_property('column_category') ?></th>
 					<th><?php echo $this->get_property('column_age_category') ?></th>
 					<th><?php echo $this->get_property('column_time') ?></th>
+					<th>Punti Qual.
+					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
+					</th>
+					<th>Punti Soc.
+					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
+					</th>
+					<th>Punti Indiv.
+					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
+					</th>
 					<th></th>
 					</tr>
 				</thead>
