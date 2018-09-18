@@ -231,7 +231,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			$results = $wpdb->get_results(
 			$wpdb->prepare(
 					"
-					SELECT @rank:=@rank+1 AS 'rank', r.id, r.user_id, r.time, r.pending, r.age_grade, r.age_category, r.garmin_id, r.gender, r.position, ec.id as event_cat, ec.time_format, ec.distance_meters,
+					SELECT @rank:=@rank+1 AS 'rank', r.id, r.user_id, r.time, r.pending, r.age_grade, r.age_category, r.garmin_id, r.gender, r.position, r.points_class_qual, r.points_soc_grup, ec.id as event_cat, ec.time_format, ec.distance_meters,
 					(SELECT display_name FROM wp_users WHERE id = r.user_id) as athlete_name, ec.name as distance, e.sub_type_id, e.name as event_name, date_format(date,'" . WPA_DATE_FORMAT . "') as event_date
 					FROM $this->RESULT_TABLE r
 					LEFT JOIN $this->EVENT_TABLE e ON r.event_id = e.id
@@ -573,8 +573,8 @@ if(!class_exists('WP_Athletics_DB')) {
 		 * Returns a list of results for the provided criteria
 		 */
 		public function get_results( $user_id, $request ) {
-			global $wpdb;
 
+			global $wpdb;
 
 			$extra_where = '';
 			$get_name = '"" as athlete_name';
@@ -593,7 +593,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			$search_period;
 			$search_event;
 			$search_athlete;
-			
+
 			$where = 'WHERE pending = ' . ($pending ? $pending : '0');
 
 			if( $user_id > -1) {

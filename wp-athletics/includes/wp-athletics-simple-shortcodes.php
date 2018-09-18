@@ -169,6 +169,8 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 							<th><?= $this->get_property('column_age_grade') ?></th>
 							<th><?= $this->get_property('column_pace_miles') ?></th>
 							<th><?= $this->get_property('column_position') ?></th>
+							<th>Punti Qual.</th>
+							<th>Punti Soc.</th>
 							<th></th>
 						</tr>
 					</thead>
@@ -188,6 +190,8 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 								<td class="center"><?= $result->age_grade > 0 ? ($result->age_grade . '%') : '-' ?></td>
 								<td class="center wpa-pace" millis="<?= $result->time ?>" meters="<?= $result->distance_meters ?>"></td>
 								<td class="center"><?= $result->position ? $result->position : '-' ?></td>
+								<td class="center"><?= $result->points_class_qual ? $result->points_class_qual : '0' ?></td>
+								<td class="center"><?= $result->points_soc_grup ? $result->points_soc_grup : '0' ?></td>
 								<td class="center wpa-activity-link" url="<?= $result->garmin_id ?>"></td>
 							</tr>
 <?php 

@@ -64,6 +64,13 @@ $common_lang = array(
 
 	// event results dialog
 	'event_results_dialog_title' => 'Risultati Evento',
+	'event_youre_going_text' => "Parteciperai",
+	'event_im_going_text' => "Parteciper&ograve;!",
+	'event_im_not_going_text' => "Non correr&ograve;",
+	'event_you_ran_this_text' => 'Hai partecipato',
+	'event_i_ran_this_text' => 'Ho partecipato',
+	'event_i_didnt_go_text' => "Non ho partecipato",
+	'event_you_ran_this_pending_text' => 'Hai partecipato, aggiungi il tuo risultato',
 
 	// generic results dialog
 	'generic_results_dialog_title' => 'Visualizza Risultati',
@@ -209,8 +216,8 @@ $common_lang = array(
 	'records_page_title' => 'Records Squadra',
 
 	// logs
-	'new_result' => '<user>{name}</user> corso al tempo di <time>{result}</time> al <event>{event-name}</event>',
-	'new_result_position_addon' => ' and came {position} overall',
+	'new_result' => '<user>{name}</user> ha corso al tempo di <time>{result}</time> - <event>{event-name}</event>',
+	'new_result_position_addon' => ' ed è arrivato {position}',
 	'update_result' => '<user>{name}</user> updated the result for <event>{event-name}</event>',
 	'new_event' => '<user>{name}</user> has created a new event <event>{event-name}</event>',
 	'user_login' => '<user>{name}</user> has logged in',
