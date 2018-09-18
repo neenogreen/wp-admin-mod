@@ -1889,6 +1889,8 @@ var WPA = {
 			jQuery('#addResultTimeSeconds').val(time.seconds);
 			jQuery('#addResultTimeMilliSeconds').val(time.milliseconds);
 			jQuery('#addPuntiQual').val(result.points_class_qual);
+			jQuery('#addPuntiSoc').val(result.points_class_qual);
+			jQuery('#addPuntiIndiv').val(result.points_class_qual);
 
 			
 			if(!result.age_category) {
@@ -2046,6 +2048,9 @@ var WPA = {
 				paceKm: paces.km,
 				paceMiles: paces.miles,
 				isPending: jQuery('#isPendingResult').val(),
+				points_class_qual: jQuery('#addPuntiQual').val() ,
+				points_class_soc: jQuery('#addPuntiSoc').val() ,
+				points_class_indiv: jQuery('#addPuntiIndiv').val() ,
 				ageGrade: ageGrade
 			}, function() {
 				WPA.toggleLoading(false);

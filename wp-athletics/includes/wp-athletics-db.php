@@ -1085,6 +1085,23 @@ if(!class_exists('WP_Athletics_DB')) {
 			$is_admin_update = isset($data['isAdmin']) && $data['isAdmin'] != '';
 			$is_demo_mode = isset($data['isDemo']) && $data['isDemo'] != '';
 			$create_event = $data['eventId'] == null || $data['eventId'] == '';
+			$points_class_qual = 0;
+			$points_soc_grup = 0;
+			$points_indiv = 0;
+
+			if (isset($data['points_class_qual'])){
+			    $points_class_qual = $data['points_class_qual'];
+
+			}
+
+			if (isset($data['points_class_soc'])){
+			    $points_soc_grup = $data['points_class_soc'];
+
+			}
+			if (isset($data['points_class_indiv'])){
+			    $points_indiv = $data['points_class_indiv'];
+
+			}
 
 			// event does not exist, we'll create a new one
 			if( $create_event ) {
@@ -1129,7 +1146,10 @@ if(!class_exists('WP_Athletics_DB')) {
 						'age_category' => $data['ageCategory'],
 						'age_grade' => $data['ageGrade'],
 						'gender' => $data['gender'],
-						'pending' => '0'
+						'pending' => '0',
+						'points_class_qual' => $points_class_qual,
+						'points_soc_grup' => $points_soc_grup,
+						'points_indiv' => $points_indiv
 					),
 					array( 'id' => $data['resultId'] ),
 					array(
@@ -1140,6 +1160,9 @@ if(!class_exists('WP_Athletics_DB')) {
 						'%s',
 						'%f',
 						'%s',
+						'%d',
+						'%d',
+						'%d',
 						'%d'
 					),
 					array( '%d' )
