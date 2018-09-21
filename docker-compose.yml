@@ -2,12 +2,14 @@ version: '2'
 services:
   wordpress:
     image: wordpress:4.2.2 #latest # https://hub.docker.com/_/wordpress/
+    #image: wordpress:4.9.8
     ports:
-      - 127.0.0.1:80:80 # change ip if required
+      - 0.0.0.0:80:80 # change ip if required
     volumes:
       #- ./config/php.conf.uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
       #- ./wp-app:/var/www/html # Full wordpress project
       - ./wp-athletics/:/var/www/html/wp-content/plugins/wp-athletics # Plugin development
+      - ./wp-php-console/:/var/www/html/wp-content/plugins/wp-php-console
       #- ./theme-name/trunk/:/var/www/html/wp-content/themes/theme-name # Theme development
     environment:
       WORDPRESS_DB_HOST: db
