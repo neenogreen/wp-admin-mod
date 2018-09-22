@@ -1511,7 +1511,7 @@ var WPA = {
 	},
 
 	translate: function(dateOrig){
-	    return dateOrig.replace("Jan","Gen").replace("Feb","Feb").replace("Mar","Mar").replace("Apr","Apr").replace("May","Mag").replace("Jun","Giu").replace("Jul","Lug").replace("Ago","Ago").replace("Sep","Set").replace("Oct","Oct").replace("Nov","Nov").replace("Dec","Dec")
+	    return dateOrig.replace("Jan","Gen").replace("Feb","Feb").replace("Mar","Mar").replace("Apr","Apr").replace("May","Mag").replace("Jun","Giu").replace("Jul","Lug").replace("Ago","Ago").replace("Sep","Set").replace("Oct","Ott").replace("Nov","Nov").replace("Dec","Dec")
 	},
 	/**
 	 * Determines what age a user is assigned for the purposes of age grade calculations. 
@@ -1545,10 +1545,10 @@ var WPA = {
 	 */
 	calculateAthleteAgeCategory: function(date, dob, doParse) {	
 		if(doParse) {
-			dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(dob) );
-			//dob=  moment(dob,"ascasc")
 
-			date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(date) );
+                dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(dob) );
+                date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(date) );
+
 			//date=  moment(date,WPA.getSetting('moment_display_date_format'))
 		}
 		
@@ -1901,6 +1901,7 @@ var WPA = {
 			jQuery('#addResultTimeMilliSeconds').val(time.milliseconds);
 			jQuery('#addPuntiQual').val(result.points_class_qual);
 			jQuery('#addPuntiSoc').val(result.points_class_qual);
+			jQuery('#addPuntiSocQual').val(result.points_class_qual);
 			jQuery('#addPuntiIndiv').val(result.points_class_qual);
 
 			
@@ -2061,6 +2062,7 @@ var WPA = {
 				isPending: jQuery('#isPendingResult').val(),
 				points_class_qual: jQuery('#addPuntiQual').val() ,
 				points_class_soc: jQuery('#addPuntiSoc').val() ,
+				points_class_soc: jQuery('#addPuntiSocQual').val() ,
 				points_class_indiv: jQuery('#addPuntiIndiv').val() ,
 				ageGrade: ageGrade
 			}, function() {

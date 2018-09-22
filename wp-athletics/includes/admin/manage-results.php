@@ -177,6 +177,9 @@ if ( $this->has_permission_to_manage() ) {
 			},
 			{
 				"mData": "points_indiv"
+			},
+			{
+				"mData": "points_soc_qual"
 			},{
 				"mData": "garmin_id",
 				"sWidth": "16px",
@@ -327,6 +330,11 @@ if ( $this->has_permission_to_manage() ) {
 					<th>Punti Indiv.
 					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
 					</th>
+					<th>Punti Soc. Qual.
+					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
+					</th>
+
+
 					<th></th>
 					</tr>
 				</thead>

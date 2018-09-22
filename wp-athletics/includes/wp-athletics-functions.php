@@ -1086,12 +1086,16 @@ if( !class_exists( 'WPA_Base' ) ) {
 						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="5" type="text" id="addPuntiQual" value="">
 					</div>
 					<div class="wpa-add-result-field add-result-no-bg">
-						<label>Punti Soc.:</label>
+						<label>Punti Soc. Grup.:</label>
 						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="5" type="text" id="addPuntiSoc" value="">
 					</div>
 					<div class="wpa-add-result-field add-result-no-bg">
 						<label>Punti Indiv.:</label>
 						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="5" type="text" id="addPuntiIndiv" value="">
+					</div>
+					<div class="wpa-add-result-field add-result-no-bg">
+						<label>Punti Soc. Qual.:</label>
+						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="5" type="text" id="addPuntiSocQual" value="">
 					</div>
 				</form>
 			</div>

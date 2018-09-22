@@ -117,7 +117,9 @@ if(!class_exists('WP_Athletics_DB')) {
 				KEY wpa_result_idx (gender,age_category,event_id,user_id),
 				points_class_qual integer(4),
 				points_soc_grup integer(4),
-				points_indiv integer(4)
+				points_soc_qual integer(4),
+				points_indiv integer(4),
+
 				);
 
 				CREATE TABLE $this->LOG_TABLE (
@@ -130,6 +132,74 @@ if(!class_exists('WP_Athletics_DB')) {
 				content longtext,
 				UNIQUE KEY id (id)
 				);
+
+				CREATE PROCEDURE $this->calcolaPunti (in p_event_id INT)
+                BEGIN
+                  DECLARE v_id INT DEFAULT 0;
+                  DECLARE v_meters INT DEFAULT 0;
+                  DECLARE v_subtype VARCHAR(4) DEFAULT 0;
+                  DECLARE punteggio int default 100;
+                  DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_id = 0 and v_meters = 0 and v_subtype='Q';
+                  DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET v_id = -1 and v_meters = -1 and v_subtype='Q';
+
+                 update wp_wpa_result
+                    set points_class_qual=null,
+                     points_soc_grup=null,
+                     points_indiv=null,
+                     points_soc_qual=null
+                   where event_id=p_event_id;
+
+                 select a.id, c.distance_meters, b.sub_type_id
+                   INTO v_id, v_meters, v_subtype
+                   from wp_wpa_result a join wp_wpa_event b join wp_wpa_event_cat c
+                  where c.id = b.event_cat_id and a.event_id=b.id and a.event_id=p_event_id
+                    and a.points_class_qual is null
+                  order by time asc
+                  LIMIT 1;
+
+
+                  WHILE v_id > 0 DO
+                     if v_subtype='Q' then
+                      update wp_wpa_result
+                     set points_class_qual=punteggio,
+                          points_soc_qual=80,
+                      points_soc_grup=0,
+                      points_indiv=0
+                      where id=v_id;
+                     elseif  v_subtype='S' then
+                      update wp_wpa_result
+                     set
+                          points_soc_grup=50,
+                      points_class_qual=0,
+                      points_soc_qual=0,
+                      points_indiv=0
+                      where id=v_id;
+                     elseif v_subtype='I' then
+                      update wp_wpa_result
+                     set
+                          points_soc_grup=0,
+                      points_class_qual=0,
+                      points_soc_qual=0,
+                      points_indiv=floor(v_meters/1000)
+
+                      where id=v_id;
+                    end if;
+                      set punteggio = punteggio-1;
+
+                      select ID
+                        INTO v_id
+                        from wp_wpa_result
+                       where event_id=p_event_id
+                         and points_class_qual is null
+                      order by time asc
+                        LIMIT 1;
+                  END WHILE;
+
+                  if v_id=-1 then rollback;
+                  else
+                  commit;
+                  end if;
+                END;
 				";
 				
 				wpa_log($sql);
@@ -166,7 +236,7 @@ if(!class_exists('WP_Athletics_DB')) {
 		 */
 		public function create_view() {
 			global $wpdb;
-			$sql = 'CREATE OR REPLACE VIEW ' . $this->RESULT_VIEW . ' AS SELECT r.id, r.time, r.user_id, r.event_id, r.garmin_id, r.position, r.age_category, r.gender, r.pending, r.age_grade, r.date_created, IFNULL(r.points_class_qual, 0) as points_class_qual, IFNULL(r.points_indiv, 0) as points_indiv, IFNULL(r.points_soc_grup, 0) as points_soc_grup,
+			$sql = 'CREATE OR REPLACE VIEW ' . $this->RESULT_VIEW . ' AS SELECT r.id, r.time, r.user_id, r.event_id, r.garmin_id, r.position, r.age_category, r.gender, r.pending, r.age_grade, r.date_created, IFNULL(r.points_class_qual, 0) as points_class_qual, IFNULL(r.points_indiv, 0) as points_indiv, IFNULL(r.points_soc_grup, 0) as points_soc_grup, IFNULL(r.points_soc_qual, 0) as points_soc_qual,
 			e.event_cat_id, e.name as event_name, e.location as event_location, ec.name as category, ec.time_format, ec.type, ec.distance_meters,
 			e.date, e.sub_type_id as event_sub_type_id
 			FROM ' . $this->RESULT_TABLE . ' r
@@ -674,7 +744,7 @@ if(!class_exists('WP_Athletics_DB')) {
 	
 				$results = $wpdb->get_results(
 					"
-					SELECT r.id, user_id, r.pending, r.age_grade, u.display_name as athlete_name, time, age_category, gender, date_created as result_date, garmin_id, position, r.points_class_qual,r.points_soc_grup,r.points_indiv, event_id,
+					SELECT r.id, user_id, r.pending, r.age_grade, u.display_name as athlete_name, time, age_category, gender, date_created as result_date, garmin_id, position, r.points_class_qual,r.points_soc_grup,r.points_indiv,r.points_soc_qual, event_id,
 					event_name, event_location, event_sub_type_id, date_format(date,'" . WPA_DATE_FORMAT . "') as event_date, category, distance_meters, time_format, event_cat_id AS event_cat,
 					(CASE WHEN (date > DATE(NOW())) THEN 1 ELSE 0 END) AS is_future FROM $this->RESULT_VIEW r LEFT JOIN $this->USER_TABLE u ON user_id = u.id
 					$where $extra_where ORDER BY $sortCol $sortDir LIMIT $offset, $limit
@@ -696,7 +766,7 @@ if(!class_exists('WP_Athletics_DB')) {
 				
 				$results = $wpdb->get_results(
 					"
-					SELECT r.id, r.user_id, r.pending, r.age_grade, u.display_name as athlete_name, r.time, r.age_category, r.gender, r.date_created as result_date, r.garmin_id, r.position, r.points_class_qual,r.points_soc_grup,r.points_indiv,e.id as event_id, e.name as event_name, e.location as event_location, e.sub_type_id AS event_sub_type_id,
+					SELECT r.id, r.user_id, r.pending, r.age_grade, u.display_name as athlete_name, r.time, r.age_category, r.gender, r.date_created as result_date, r.garmin_id, r.position, r.points_class_qual,r.points_soc_grup,r.points_soc_qual,r.points_indiv,e.id as event_id, e.name as event_name, e.location as event_location, e.sub_type_id AS event_sub_type_id,
 					date_format(e.date,'" . WPA_DATE_FORMAT . "') as event_date, ec.name as category, ec.distance_meters, ec.time_format, e.event_cat_id as event_cat,
 					(CASE WHEN (e.date > DATE(NOW())) THEN 1 ELSE 0 END) AS is_future FROM $this->RESULT_TABLE r
 					LEFT JOIN $this->EVENT_TABLE e ON r.event_id = e.id
@@ -1088,6 +1158,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			$points_class_qual = 0;
 			$points_soc_grup = 0;
 			$points_indiv = 0;
+			$points_soc_qual = 0;
 
 			if (isset($data['points_class_qual'])){
 			    $points_class_qual = $data['points_class_qual'];
@@ -1102,6 +1173,12 @@ if(!class_exists('WP_Athletics_DB')) {
 			    $points_indiv = $data['points_class_indiv'];
 
 			}
+			if (isset($data['points_soc_qual'])){
+			    $points_soc_qual = $data['points_soc_qual'];
+
+			}
+
+
 
 			// event does not exist, we'll create a new one
 			if( $create_event ) {
@@ -1149,7 +1226,8 @@ if(!class_exists('WP_Athletics_DB')) {
 						'pending' => '0',
 						'points_class_qual' => $points_class_qual,
 						'points_soc_grup' => $points_soc_grup,
-						'points_indiv' => $points_indiv
+						'points_indiv' => $points_indiv,
+						'points_soc_qual' => $points_soc_qual
 					),
 					array( 'id' => $data['resultId'] ),
 					array(
@@ -1195,6 +1273,9 @@ if(!class_exists('WP_Athletics_DB')) {
 				$log_content = $this->parent->process_log_content_user_provided( $user, $prop, $data );
 				$this->write_to_log_user_provided( $user, $prop, $log_content, $data['eventId'], $data['resultId'] );
 			}
+
+			//update delle classifiche
+			$success = $wpdb->query( $wpdb->prepare("CALL calcolaPunti(%d)", $data['eventId']));
 
 			return $success;
 		}
@@ -1275,7 +1356,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			global $wpdb;
 			$result = $wpdb->get_row(
 				"
-				SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending, r.points_class_qual, r.points_soc_grup,r.points_indiv
+				SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending, r.points_class_qual, r.points_soc_grup,r.points_soc_qual,r.points_indiv
 				FROM $this->RESULT_TABLE r WHERE r.id = $id
 				"
 			);
