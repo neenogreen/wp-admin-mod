@@ -128,6 +128,146 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 		}
 
 		/**
+		 * Outputs a club rank table
+		 */
+		public function display_class_soc( $atts ) {
+
+		    //we expect only year
+		    if($this->validate_attributes( $atts, 'year' ) ) {
+		        $this->enqueue_scripts_and_styles();
+
+				$limit = isset($atts['limit']) ? intval($atts['limit']) : null;
+
+				$params = array(
+					'year' => $atts['year'],
+				);
+				$results = $this->wpa_db->get_class_soc($params);
+
+				$title = "";
+				if(isset($atts['title'])) {
+					$title = $atts['title'];
+				}
+				else {
+					if(!empty($results)) {
+						$title = $this->get_property('class_soc') . " " . $atts['year'];
+					}
+				}
+				?>
+
+				<script>
+					jQuery(document).ready(function() {
+						WPA.processSimpleShortcodeTable();
+					});
+				</script>
+				<?php
+				if(!empty($results) && !isset($atts['notitle'])) {
+					echo "<p class='wpa-simple-table-title'>$title</p>";
+				}
+				?>
+
+		        <table id="wpa-user-results" class="wpa-simple-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th><?= $this->get_property('column_athlete_name') ?></th>
+							<th><?= $this->get_property('column_age_category') ?></th>
+							<th><?= $this->get_property('column_points') ?>   </th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php
+						if(!empty($results)) {
+							foreach($results as $result ) {
+					?>
+								<tr>
+									<td class="center rank"><?= $result->rank ?></td>
+									<td><?= $result->athlete_name ?></td>
+									<td><?= $result->age_category ?></td>
+									<td><?= $result->points ?></td>
+								</tr>
+					<?php
+							}
+						}
+						else {
+							echo "<tr><td class='empty' colspan='10'>" . $this->get_property('shortcode_table_no_results') . "</td></tr>";
+						}
+					?>
+					</tbody>
+				</table>
+		    <?php
+			}
+		}
+
+		/**
+		 * Outputs a quality rank table
+		 */
+		public function display_class_qual( $atts ) {
+
+		    //we expect only year
+		    if($this->validate_attributes( $atts, 'year' ) ) {
+		        $this->enqueue_scripts_and_styles();
+
+				$limit = isset($atts['limit']) ? intval($atts['limit']) : null;
+
+				$params = array(
+					'year' => $atts['year'],
+				);
+				$results = $this->wpa_db->get_class_qual($params);
+
+				$title = "";
+				if(isset($atts['title'])) {
+					$title = $atts['title'];
+				}
+				else {
+					if(!empty($results)) {
+						$title = $this->get_property('class_qual') . " " . $atts['year'];
+					}
+				}
+				?>
+
+				<script>
+					jQuery(document).ready(function() {
+						WPA.processSimpleShortcodeTable();
+					});
+				</script>
+				<?php
+				if(!empty($results) && !isset($atts['notitle'])) {
+					echo "<p class='wpa-simple-table-title'>$title</p>";
+				}
+				?>
+
+		        <table id="wpa-user-results" class="wpa-simple-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th><?= $this->get_property('column_athlete_name') ?></th>
+							<th><?= $this->get_property('column_points') ?>   </th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php
+						if(!empty($results)) {
+							foreach($results as $result ) {
+					?>
+								<tr>
+									<td class="center rank"><?= $result->rank ?></td>
+									<td><?= $result->athlete_name ?></td>
+									<td><?= $result->points ?></td>
+								</tr>
+					<?php
+							}
+						}
+						else {
+							echo "<tr><td class='empty' colspan='10'>" . $this->get_property('shortcode_table_no_results') . "</td></tr>";
+						}
+					?>
+					</tbody>
+				</table>
+		    <?php
+			}
+		}
+
+		/**
 		 * Outputs an event results table
 		 */
 		public function display_event_results( $atts ) {

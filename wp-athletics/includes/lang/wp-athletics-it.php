@@ -12,6 +12,7 @@ $common_lang = array(
 	'column_result_date' => 'Data Inserita',
 	'column_event_type' => 'Terreno',
 	'column_event_name' => 'Evento',
+	'column_points' => 'Punti',
 	'column_athlete_name' => 'Atleta',
 	'column_athlete_username' => 'Nome utente',
 	'column_athlete_email' => 'Email',
@@ -23,7 +24,6 @@ $common_lang = array(
 	'column_pace' => 'Andatura',
 	'column_position' => 'Pos.',
 	'column_garmin' => 'Garmin',
-	'column_athlete_name' => 'Nome',
 	'column_age_category' => 'Classe',
 	'column_rankings' => 'Classifiche',
 	'column_club_rank' => 'Posizione',
@@ -170,6 +170,8 @@ $common_lang = array(
 	'time_invalid_text' => 'Tempo non corretto',
 	'time_no_value_text' => 'Indisponibile',
 	'time_days_label' => 'giorni',
+	'class_qual' => 'Classifica Qualit&agrave',
+	'class_soc' => 'Classifica Societ&agrave',
 
 	// stats
 	'stats_tab' => 'Statistiche',

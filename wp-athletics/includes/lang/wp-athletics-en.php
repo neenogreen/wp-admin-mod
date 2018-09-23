@@ -9,6 +9,7 @@ $common_lang = array(
 	'column_event_type' => 'Terrain',
 	'column_event_name' => 'Event',
 	'column_athlete_name' => 'Athlete',
+	'column_points' => 'Points',
 	'column_athlete_username' => 'Username',
 	'column_athlete_email' => 'Email',
 	'column_athlete_registered' => 'Registered',
@@ -225,6 +226,8 @@ $common_lang = array(
 	'na' => 'N/A',
 	'shortcode_simple' => 'Simple',
 	'shortcode_interactive' => 'Interactive',
+    'class_qual' => 'Quality Ranking',
+    'class_soc' => 'Quality Ranking',
 	
 	// widgets
 	'results_widget_recent_results_link' => 'View all Recent Results',

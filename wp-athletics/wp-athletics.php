@@ -96,6 +96,8 @@ if(!class_exists('WP_Athletics')) {
 			// simple short codes (non-interactive)
 			add_shortcode( 'wpa-simple-results', array( $this, 'do_simple_results' ) );
 			add_shortcode( 'wpa-simple-rankings', array( $this, 'do_simple_rankings' ) );
+			add_shortcode( 'wpa-classifica-qual', array( $this, 'do_classifica_qual' ) );
+			add_shortcode( 'wpa-classifica-soc', array( $this, 'do_classifica_soc' ) );
 			
 
 			add_action( 'init', array( $this , 'register_assets') );
@@ -325,7 +327,7 @@ if(!class_exists('WP_Athletics')) {
 				define('WPA_VERSION_NUM', '1.1.7');
 
 			if (!defined('WPA_DB_VERSION') )
-				define('WPA_DB_VERSION', '1.7.5');
+				define('WPA_DB_VERSION', '1.7.9');
 			
 			if (!defined('WPA_DB_DISABLE_SQL_VIEW') )
 				define('WPA_DB_DISABLE_SQL_VIEW', get_option( 'wp-athletics-disable-sql-view', 'no' ) == 'yes');
@@ -402,6 +404,28 @@ if(!class_exists('WP_Athletics')) {
 			ob_start();
 			$this->wpa_simple_shortcode = new WP_Athletics_Simple_Shortcodes( $this->wpa_db );
 			$this->wpa_simple_shortcode->display_rankings( $atts );
+			$content = ob_get_clean();
+			return $content;
+		}
+
+		/**
+		 * Shortcode action for displaying club rank
+		 */
+		public function do_classifica_soc( $atts) {
+			ob_start();
+			$this->wpa_simple_shortcode = new WP_Athletics_Simple_Shortcodes( $this->wpa_db );
+			$this->wpa_simple_shortcode->display_class_soc( $atts );
+			$content = ob_get_clean();
+			return $content;
+		}
+
+		/**
+		 * Shortcode action for displaying quality rank
+		 */
+		public function do_classifica_qual( $atts) {
+			ob_start();
+			$this->wpa_simple_shortcode = new WP_Athletics_Simple_Shortcodes( $this->wpa_db );
+			$this->wpa_simple_shortcode->display_class_qual( $atts );
 			$content = ob_get_clean();
 			return $content;
 		}

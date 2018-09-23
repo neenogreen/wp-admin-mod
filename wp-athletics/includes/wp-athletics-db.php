@@ -50,11 +50,13 @@ if(!class_exists('WP_Athletics_DB')) {
 		 */
 		public function create_db( $force = false ) {
 			global $wpa_settings;
+
 			$installed_ver = get_option( 'wp-athletics_db_version', 'not_installed');
 
 			wpa_log('Installed DB version is ' . $installed_ver);
 			wpa_log('Current DB version is ' . WPA_DB_VERSION);
-			
+
+
 			if($force) {
 				wpa_log('Forcing DB update. Version is ' . WPA_DB_VERSION);
 			}
@@ -132,8 +134,55 @@ if(!class_exists('WP_Athletics_DB')) {
 				content longtext,
 				UNIQUE KEY id (id)
 				);
+				";
 
-				CREATE PROCEDURE $this->calcolaPunti (in p_event_id INT)
+
+
+				wpa_log($sql);
+
+				require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+				dbDelta( $sql );
+
+
+
+				update_option( "wp-athletics_db_version", WPA_DB_VERSION );
+
+                // create procedure
+			    $this->create_procedure();
+
+				// create view
+				$this->create_view();
+
+				// create indexes
+				$this->create_db_indexes();
+
+				// is this a first time install? if so, create event categories, user meta data and a results view
+				if($installed_ver == 'not_installed') {
+
+					// insert default event cat data
+					$this->create_default_event_cats();
+
+					// create sample data (if setting is enabled)
+					if( WP_DEBUG && (bool)$wpa_settings['create_demo_data_on_activate'] ) {
+						require_once 'wp-athletics-demo-data.php';
+						new WP_Athletics_Demo( $this );
+					}
+				}
+			}
+			return true;
+		}
+
+		/**
+		 * Creates a stored procedure to calculate points
+		 */
+		public function create_procedure() {
+			global $wpdb;
+
+			$sqlDrop="DROP PROCEDURE IF EXISTS calcolaPunti;";
+			$wpdb->query( $sqlDrop );
+
+			$sqlCreateProcedure = "
+			CREATE PROCEDURE calcolaPunti (in p_event_id INT)
                 BEGIN
                   DECLARE v_id INT DEFAULT 0;
                   DECLARE v_meters INT DEFAULT 0;
@@ -199,37 +248,12 @@ if(!class_exists('WP_Athletics_DB')) {
                   else
                   commit;
                   end if;
-                END;
-				";
-				
-				wpa_log($sql);
+                END;";
 
-				require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-				dbDelta( $sql );
+            $wpdb->query( $sqlCreateProcedure );
 
-				update_option( "wp-athletics_db_version", WPA_DB_VERSION );
-
-				// create view
-				$this->create_view();
-
-				// create indexes
-				$this->create_db_indexes();
-
-				// is this a first time install? if so, create event categories, user meta data and a results view
-				if($installed_ver == 'not_installed') {
-
-					// insert default event cat data
-					$this->create_default_event_cats();
-
-					// create sample data (if setting is enabled)
-					if( WP_DEBUG && (bool)$wpa_settings['create_demo_data_on_activate'] ) {
-						require_once 'wp-athletics-demo-data.php';
-						new WP_Athletics_Demo( $this );
-					}
-				}
-			}
-			return true;
 		}
+
 
 		/**
 		 * Creates a result view
@@ -828,6 +852,70 @@ if(!class_exists('WP_Athletics_DB')) {
 				WHERE rank_table.id = $result_id
 			" );
 		}
+
+        /**
+		 * Returns the quality ranking for a specidied year
+		 */
+        public function get_class_qual( $request ) {
+           global $wpdb;
+           $year = $request['year'];
+
+           $sql = "select a.display_name as athlete_name,points as points from
+                    wp_users a join (
+                    select a.id,sum(b.points_class_qual) as points
+                    from wp_users a join wp_wpa_result b join wp_wpa_event c
+                    where a.id=b.user_id and b.event_id=c.id and date_format(c.date,'%Y')='%d'
+                    group by a.id) d where a.ID=d.id
+                    order by points desc";
+            $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
+
+            $rank = 0;
+
+			// loop each result and find the overall club rank for the age cat and event
+			foreach ( $results as $result ) {
+				$rank++;
+				$result->rank = $rank;
+			}
+
+			return $results;
+
+        }
+
+        /**
+		 * Returns the quality ranking for a specidied year
+		 */
+        public function get_class_soc( $request ) {
+           global $wpdb;
+           $year = $request['year'];
+
+           $sql = "select f.age_category as age_category, a.display_name as athlete_name,total as points,points_soc_grup,points_indiv,points_soc_qual from
+                    wp_users a join (
+                    select a.id,sum(b.points_soc_grup) as points_soc_grup,
+                    sum(b.points_indiv) as points_indiv, sum(b.points_soc_qual) as
+                    points_soc_qual,
+                    sum(b.points_soc_grup)+sum(b.points_indiv)+sum(b.points_soc_qual) as total
+                    from wp_users a join wp_wpa_result b join wp_wpa_event c
+                    where a.id=b.user_id and b.event_id=c.id and date_format(c.date,'%Y')='%d'
+                    group by a.id) d
+                    join (select e.user_id,max(e.age_category) as age_category from wp_wpa_result e group by user_id) f
+                    where a.ID=d.id and
+                    a.ID=f.user_id
+                    order by total desc";
+            $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
+
+            $rank = 0;
+
+			// loop each result and find the overall club rank for the age cat and event
+			foreach ( $results as $result ) {
+				$rank++;
+				$result->rank = $rank;
+			}
+
+			return $results;
+
+        }
+
+
 
 		/**
 		 * Returns a list of personal bests for each existing event category. If user is specified, will return results
