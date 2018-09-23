@@ -144,12 +144,21 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 				$results = $this->wpa_db->get_class_soc($params);
 
 				$title = "";
+				$year = $atts['year'];
+
+				if ( $atts['year']=="last"){
+                    $year=date("Y")-1;
+                }
+                if ( $atts['year']=="current"){
+                    $year=date("Y");
+                }
+
 				if(isset($atts['title'])) {
 					$title = $atts['title'];
 				}
 				else {
 					if(!empty($results)) {
-						$title = $this->get_property('class_soc') . " " . $atts['year'];
+						$title = $this->get_property('class_soc') . " " . $year ;
 					}
 				}
 				?>
@@ -215,12 +224,20 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 				$results = $this->wpa_db->get_class_qual($params);
 
 				$title = "";
+				$year = $atts['year'];
+
+				if ( $atts['year']=="last"){
+                    $year=date("Y")-1;
+                }
+                if ( $atts['year']=="current"){
+                    $year=date("Y");
+                }
 				if(isset($atts['title'])) {
 					$title = $atts['title'];
 				}
 				else {
 					if(!empty($results)) {
-						$title = $this->get_property('class_qual') . " " . $atts['year'];
+						$title = $this->get_property('class_qual') . " " . $year;
 					}
 				}
 				?>

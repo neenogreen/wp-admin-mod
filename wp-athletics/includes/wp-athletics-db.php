@@ -859,6 +859,12 @@ if(!class_exists('WP_Athletics_DB')) {
         public function get_class_qual( $request ) {
            global $wpdb;
            $year = $request['year'];
+           if ( $year=="last"){
+                $year=date("Y")-1;
+            }
+           if ( $year=="current"){
+                $year=date("Y");
+            }
 
            $sql = "select a.display_name as athlete_name,points as points from
                     wp_users a join (
@@ -888,6 +894,12 @@ if(!class_exists('WP_Athletics_DB')) {
            global $wpdb;
            $year = $request['year'];
 
+           if ( $year=="last"){
+                $year=date("Y")-1;
+            }
+           if ( $year=="current"){
+                $year=date("Y");
+            }
            $sql = "select f.age_category as age_category, a.display_name as athlete_name,total as points,points_soc_grup,points_indiv,points_soc_qual from
                     wp_users a join (
                     select a.id,sum(b.points_soc_grup) as points_soc_grup,
