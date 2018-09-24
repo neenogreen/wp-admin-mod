@@ -137,12 +137,13 @@ WPA.MyResults = {
 			"aoColumns": [{
 				"mData": "time_format",
 				"bVisible": false
-			},{
+			},/**{
 				"mData": "id",
 				"sWidth": "60px",
 				"mRender": WPA.renderDeleteEditResultColumn,
 				"bSortable": false
-			},{
+			},*/
+			{
 				"mData": "event_date"
 			},{
 				"mData": "event_name",
@@ -201,12 +202,14 @@ WPA.MyResults = {
 			},{
 				"mData": "event_cat_id",
 				"bVisible": false
-			},{
+			},
+			/**{
 				"mData": "id",
 				"sWidth": "60px",
 				"mRender": WPA.renderDeleteEditResultColumn,
 				"bSortable": false
-			},{ 
+			},*/
+			{
 				"mData": "category",
 				"sClass": "datatable-bold-right-gray"
 			},{ 

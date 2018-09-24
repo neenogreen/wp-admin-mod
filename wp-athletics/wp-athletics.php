@@ -454,8 +454,8 @@ if(!class_exists('WP_Athletics')) {
 			// create the WPA pages - will not create if they do not yet exist
 			
 			// create a "my results" page
-			$this->wpa_manage_results = new WP_Athletics_Manage_Results( $this->wpa_db );
-			$this->wpa_manage_results->create_page();
+			//$this->wpa_manage_results = new WP_Athletics_Manage_Results( $this->wpa_db );
+			//$this->wpa_manage_results->create_page();
 			
 			// create a "recent results" page
 			$this->wpa_recent_results = new WP_Athletics_Recent_Results( $this->wpa_db );

@@ -157,6 +157,9 @@ if ( $this->has_permission_to_manage() ) {
 				if(aData['is_future'] == '1') {
 					jQuery(nRow).addClass('future-event');
 				}
+				else {
+				    jQuery(nRow).addClass('past-event');
+				}
 			},
 			"iDisplayLength": 25,
 			"sServerMethod": "POST",

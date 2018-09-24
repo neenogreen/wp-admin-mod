@@ -1012,6 +1012,10 @@ table.wpa-widget td {
 	background-color: #ECFFE1 !important;
 }
 
+.past-event, .past-event .sorting_1 {
+	background-color: rgba(255, 0, 0, 0.1) !important;
+}
+
 .result-pending-event, .result-pending-event .sorting_1 {
 	background-color: #FFF5DA !important;
 }

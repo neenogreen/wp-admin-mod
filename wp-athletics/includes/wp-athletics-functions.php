@@ -1345,7 +1345,7 @@ if( !class_exists( 'WPA_Base' ) ) {
 						  </div>
 						  <!-- add result button -->
 						 <div class="wpa-event-info-actions">
-						 	<button style="display:none" id="wpa-event-info-add-result"><?php echo $this->get_property('add_result_title_event_dialog') ?></button>
+						 	<!-- <button style="display:none" id="wpa-event-info-add-result"><?php echo $this->get_property('add_result_title_event_dialog') ?></button> -->
 						 	<button style="display:none" id="wpa-event-im-going-button"><?php echo $this->get_property('event_im_going_text') ?></button>
 						 	<button style="display:none" id="wpa-event-im-not-going-button"><?php echo $this->get_property('event_im_not_going_text') ?></button>
 						 </div>

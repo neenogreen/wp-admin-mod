@@ -40,14 +40,14 @@ WPA.Events = {
 			WPA.Events.processContent();
 			
 			// add result button
-			jQuery('button.event-add-result').button({
+			/**jQuery('button.event-add-result').button({
 				icons: {
 	              primary: 'ui-icon-circle-plus'
 	            }
 			}).click(function() {
 				var eventId = jQuery(this).attr('event-id');
 				WPA.launchAddResultDialog(eventId, true);
-			});
+			});*/
 			
 			// never went button
 			jQuery('button.event-never-ran').button().click(function() {
@@ -73,10 +73,10 @@ WPA.Events = {
 			});
 			
 			// pending result, add the time
-			jQuery('button.event-add-pending-result').button().click(function() {
+			/**jQuery('button.event-add-pending-result').button().click(function() {
 				var eventId = jQuery(this).attr('result-id');
 				WPA.editPendingResult(eventId, WPA.userId);
-			});
+			});*/
 		}
 		else {
 			jQuery('.feed-content-empty').show();
@@ -124,7 +124,9 @@ WPA.Events = {
 					'&nbsp;<button result-id="' + result.pending_result_id + '" class="event-never-ran">' + WPA.getProperty('event_i_didnt_go_text') + '</button>';
 				}
 				else if(result.has_result == '0') {
-					return '<br/><button event-id="' + result.event_id + '" class="event-add-result">' + WPA.getProperty('event_i_ran_this_text') + '</button>'
+					//return '<br/><button event-id="' + result.event_id + '" class="event-add-result">' + WPA.getProperty('event_i_ran_this_text') + '</button>'
+					//return '<br/>' + WPA.getProperty('event_i_ran_this_text')
+					return '<br/>'
 				}
 				else if(result.has_result == '1') {
 					return '<br/><span class="wpa-my-event">' + WPA.getProperty('event_you_ran_this_text') + '</span>';
@@ -143,8 +145,8 @@ WPA.Events = {
 		jQuery('.month-' + result.month).append(
 			'<div class="wpa-event ' + (result.is_future == '1' ? 'future-event' : 'past-event') + '">' + 
 				'<div class="wpa-event-left">' +
-					'<span event-id="' + result.event_id + '" class="wpa-event-content wpa-event-title ' + (result.is_future == '1' ? 'future' : 'past') + '"><event>' + result.name + (result.location ? (', ' + result.location) : '') + '</event></span>' + 
-					'<br/><span class="wpa-result-date">' + result.display_date + '</span>' + 
+					'<span event-id="' + result.event_id + '" class="wpa-event-content wpa-event-title ' + (result.is_future == '1' ? 'future' : 'past') + '"><event>' + result.name + (result.location ? (', ' + result.location) : '') + '</event></span>' +
+					'<br/><span class="wpa-result-date">' + result.display_date + '</span>' +
 				'</div>' + 
 				'<div class="wpa-event-right">' +
 					'<span event-id="' + result.event_id + '" class="wpa-event-count ' + (result.is_future == '1' ? 'future' : 'past') + '"><event>' + result.count + ' ' + 

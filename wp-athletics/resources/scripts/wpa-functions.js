@@ -1513,6 +1513,9 @@ var WPA = {
 	translate: function(dateOrig){
 	    return dateOrig.replace("Jan","Gen").replace("Feb","Feb").replace("Mar","Mar").replace("Apr","Apr").replace("May","Mag").replace("Jun","Giu").replace("Jul","Lug").replace("Ago","Ago").replace("Sep","Set").replace("Oct","Ott").replace("Nov","Nov").replace("Dec","Dec")
 	},
+	retranslate: function(dateOrig){
+	    return dateOrig.replace("Gen","Jan").replace("Feb","Feb").replace("Mar","Mar").replace("Apr","Apr").replace("Mag","May").replace("Giu","Jun").replace("Lug","Jul").replace("Ago","Ago").replace("Set","Sep").replace("Ott","Oct").replace("Nov","Nov").replace("Dec","Dec")
+	},
 	/**
 	 * Determines what age a user is assigned for the purposes of age grade calculations. 
 	 * 
@@ -1527,8 +1530,14 @@ var WPA = {
 		    //dob = WPA.userDOB
 		    //dob = new Date.parseString(WPA.userDOB,WPA.getSetting('display_date_format'))
 		    //date =  new Date.parseString(resultDate,WPA.getSetting('display_date_format') )
-			dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(WPA.userDOB) );
-			date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(resultDate) );
+		    try {
+                dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(WPA.userDOB) );
+                date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(resultDate) );
+			}
+			catch (err){
+			   dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(WPA.userDOB) );
+                date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(resultDate) );
+			}
 			return this.howOld(date, dob);
 		}
 		else {
@@ -1545,9 +1554,15 @@ var WPA = {
 	 */
 	calculateAthleteAgeCategory: function(date, dob, doParse) {	
 		if(doParse) {
-
+                try{
                 dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(dob) );
                 date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(date) );
+                }
+                catch (err){
+                dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
+                date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(date) );
+
+                }
 
 			//date=  moment(date,WPA.getSetting('moment_display_date_format'))
 		}
@@ -1572,7 +1587,12 @@ var WPA = {
 	 */
 	calculateCurrentAthleteAgeCategory: function(dob) {
 		if(dob != '') {
-			dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(dob) );
+		    try{
+			    dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(dob) );
+			}
+			catch(err){
+			    dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
+			}
 			return this.calculateAthleteAgeCategory(new Date(), dob);
 		}
 		return null;

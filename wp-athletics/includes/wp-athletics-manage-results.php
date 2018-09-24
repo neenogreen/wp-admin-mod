@@ -97,6 +97,7 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 		 */
 		public function my_results() {
 
+
 			if ( is_user_logged_in() ) {
 
 				global $current_user;
@@ -474,7 +475,7 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 							<thead>
 								<tr>
 									<th></th>
-									<th></th>
+									<!-- <th></th> -->
 									<th><?php echo $this->get_property('column_event_date') ?></th>
 									<th><?php echo $this->get_property('column_event_name') ?></th>
 									<th><?php echo $this->get_property('column_event_location') ?></th>
@@ -496,7 +497,7 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 								<tr>
 									<th></th>
 									<th></th>
-									<th></th>
+									<!-- <th></th> -->
 									<th></th>
 									<th><?php echo $this->get_property('column_category') ?></th>
 									<th><?php echo $this->get_property('column_time') ?></th>

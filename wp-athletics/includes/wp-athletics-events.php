@@ -175,7 +175,9 @@ if(!class_exists('WP_Athletics_Events')) {
 			}
 			
 			.wpa-event-title.past {
-				text-decoration: line-through;
+				// text-decoration: line-through;
+				// opacity: 0.5;
+				 color: #ff0000;
 			}
 			
 			.wpa-event-content {
@@ -289,7 +291,7 @@ if(!class_exists('WP_Athletics_Events')) {
 				<!-- EVENTS -->
 				<div id="wpa-events">
 				<?php 
-					for($i = 1; $i <= 12; $i++) {
+					for($i = 12; $i >= 1; $i--) {
 				?>
 						<div class="event-month month-<?= $i ?>">
 							<p><?= $this->get_property('month_' . $i)?></p>
