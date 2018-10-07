@@ -130,6 +130,87 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 		/**
 		 * Outputs a club rank table
 		 */
+		public function display_roster( $atts ) {
+            //we expect only year
+		    if($this->validate_attributes( $atts, 'year' ) ) {
+		        $this->enqueue_scripts_and_styles();
+
+				$limit = isset($atts['limit']) ? intval($atts['limit']) : null;
+
+				$params = array(
+					'year' => $atts['year'],
+				);
+
+				$results = $this->wpa_db->get_roster($params);
+
+				$title = "";
+				$year = $atts['year'];
+
+
+				///Todo: Nino, continue here
+				if(isset($atts['title'])) {
+					$title = $atts['title'];
+				}
+				else {
+					if(!empty($results)) {
+						$title = $this->get_property('roster') . " " . $year ;
+					}
+				}
+
+				?>
+
+				<script>
+					jQuery(document).ready(function() {
+						WPA.processSimpleShortcodeTable();
+					});
+				</script>
+				<?php
+				if(!empty($results) && !isset($atts['notitle'])) {
+					echo "<p class='wpa-simple-table-title'>$title</p>";
+				}
+				?>
+
+		        <table id="wpa-roster" class="wpa-simple-table">
+					<thead>
+						<tr>
+							<th></th>
+							<th><?= $this->get_property('column_lastname') ?></th>
+							<th><?= $this->get_property('column_firstname') ?></th>
+							<th><?= $this->get_property('column_tessFIDAL') ?></th>
+							<th><?= $this->get_property('column_scadenzacm') ?></th>
+						</tr>
+					</thead>
+					<tbody>
+					<?php
+						if(!empty($results)) {
+							foreach($results as $result ) {
+					?>
+								<tr>
+									<td class="center rank"></td>
+									<td><?= $result->last_name ?></td>
+									<td><?= $result->first_name ?></td>
+									<td><?= $result->tessFIDAL ?></td>
+									<td><?= $result->scadenzacm ?></td>
+								</tr>
+					<?php
+							}
+						}
+						else {
+							echo "<tr><td class='empty' colspan='10'>" . $this->get_property('shortcode_table_no_results') . "</td></tr>";
+						}
+					?>
+					</tbody>
+				</table>
+		    <?php
+
+		    }
+
+
+		}
+
+		/**
+		 * Outputs a club rank table
+		 */
 		public function display_class_soc( $atts ) {
 
 		    //we expect only year

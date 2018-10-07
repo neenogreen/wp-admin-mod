@@ -223,7 +223,10 @@ WPA.Ajax = {
 					userId: jQuery('#editAthleteId').val(),
 					gender: jQuery('#editAthleteGender').val(),
 					email: jQuery('#editAthleteEmail').val(),
-					dob: jQuery('#editAthleteDob').val()
+					dob: jQuery('#editAthleteDob').val(),
+					scadenza_cm: jQuery('#editAthleteScadenzaCM').val(),
+					annoultimaiscrizione: jQuery('#editAthleteAnnoUltimaIscrizione').val(),
+					taglia: jQuery('#editAthleteTaglia').val()
 				},
 				success: function(result) {
 					WPA.toggleLoading(false);

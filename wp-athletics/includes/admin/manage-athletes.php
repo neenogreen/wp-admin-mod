@@ -90,7 +90,19 @@ if ( $this->has_permission_to_manage() ) {
 			},{
 				"mData": "user_registered",
 				"sWidth": "100px",
-				"bSortable": false
+				"bSortable": true
+			},{
+				"mData": "athlete_scadenza_cm",
+				"sWidth": "100px",
+				"bSortable": true
+			},{
+				"mData": "athlete_annoultimaiscrizione",
+				"sWidth": "100px",
+				"bSortable": true
+			},{
+				"mData": "athlete_taglia",
+				"sWidth": "100px",
+				"bSortable": true
 			}]
 		}));
 	}
@@ -200,6 +212,9 @@ if ( $this->has_permission_to_manage() ) {
 					<th><?php echo $this->get_property('column_athlete_email') ?></th>
 					<th><?php echo $this->get_property('column_athlete_dob') ?></th>
 					<th><?php echo $this->get_property('column_athlete_registered') ?></th>
+					<th><?php echo $this->get_property('column_scadenzacm') ?></th>
+					<th><?php echo $this->get_property('column_lastyearsubscribed') ?></th>
+					<th><?php echo $this->get_property('column_size') ?></th>
 				</tr>
 			  </thead>
 			</table>

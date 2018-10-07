@@ -973,6 +973,18 @@ if( !class_exists( 'WPA_Base' ) ) {
 				<input readonly="readonly" class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="20" type="text" id="editAthleteDob"/>
 				<span class="wpa-help" title="<?php echo $this->get_property('add_result_create_user_dob_help'); ?>"></span>
 			</div>
+			<div class="wpa-add-result-field add-result-no-bg">
+				<label><?php echo $this->get_property('column_scadenzacm'); ?>:</label>
+				<input class="ui-widget ui-widget-content ui-state-default ui-corner-all hasDatePicker" size="20" type="text" id="editAthleteScadenzaCM"/>
+			</div>
+			<div class="wpa-add-result-field add-result-no-bg">
+				<label><?php echo $this->get_property('column_lastyearsubscribed'); ?>:</label>
+				<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="20" type="text" id="editAthleteAnnoUltimaIscrizione"/>
+			</div>
+			<div class="wpa-add-result-field add-result-no-bg">
+				<label><?php echo $this->get_property('column_size'); ?>:</label>
+				<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="20" type="text" id="editAthleteTaglia"/>
+			</div>
 		</div>
 		
 		<div id="create-user-dialog" style="display:none">

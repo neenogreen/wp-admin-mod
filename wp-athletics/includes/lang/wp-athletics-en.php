@@ -29,6 +29,12 @@ $common_lang = array(
 	'column_result_count' => 'Result Count',
 	'column_event_shortcode' => 'Embed Code',
 	'column_age_grade' => 'Age Grade',
+	'column_lastname' => 'Last Name',
+	'column_firstname' => 'First Name',
+	'column_tessFIDAL' => 'ID num.',
+	'column_scadenzacm' => 'Scadenza CM',
+	'column_lastyearsubscribed' => 'Ultimo Anno Iscrizione',
+	'column_size' => 'Taglia',
 
 	// my results - profile
 	'my_profile_display_name_label' => 'Athlete Name',
@@ -228,6 +234,9 @@ $common_lang = array(
 	'shortcode_interactive' => 'Interactive',
     'class_qual' => 'Quality Ranking',
     'class_soc' => 'Quality Ranking',
+    'roster' => 'Roster',
+
+
 	
 	// widgets
 	'results_widget_recent_results_link' => 'View all Recent Results',

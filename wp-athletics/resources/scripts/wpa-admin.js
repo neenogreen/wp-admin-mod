@@ -62,12 +62,16 @@ WPA.Admin = {
 	/**
 	 * Show the edit athlete changes
 	 */
-	displayEditAthlete: function(id, dob, name, gender, email) {
+	 //full['scadenza_cm'] + '\',\'' + full['annoultimaiscrizione'] + '\',\'' + full['taglia']
+	displayEditAthlete: function(id, dob, name, gender, email,scadenza_cm,annoultimaiscrizione,taglia) {
 		jQuery('#editAthleteName').val(name);
 		jQuery('#editAthleteEmail').val(email);
 		jQuery('#editAthleteGender').val(gender);
 		jQuery('#editAthleteId').val(id);
 		jQuery('#editAthleteDob').val(dob != 'null' ? dob : '');
+		jQuery('#editAthleteScadenzaCM').val(scadenza_cm);
+		jQuery('#editAthleteAnnoUltimaIscrizione').val(annoultimaiscrizione);
+		jQuery('#editAthleteTaglia').val(taglia);
 		jQuery('#edit-user-dialog').dialog('open');
 	},
 	

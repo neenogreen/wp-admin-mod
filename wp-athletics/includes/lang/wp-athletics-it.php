@@ -30,6 +30,12 @@ $common_lang = array(
 	'column_result_count' => 'Result Count',
 	'column_event_shortcode' => 'Embed Code',
 	'column_pace_miles' => 'Andatura',
+    'column_lastname' => 'Cognome',
+	'column_firstname' => 'Nome',
+	'column_tessFIDAL' => 'Tessera FIDAL',
+	'column_scadenzacm' => 'Scadenza Certificato',
+	'column_lastyearsubscribed' => 'Ultimo Anno Iscrizione',
+	'column_size' => 'Taglia',
 
 
 	// my results - profile
@@ -174,6 +180,7 @@ $common_lang = array(
 	'time_days_label' => 'giorni',
 	'class_qual' => 'Classifica Qualit&agrave',
 	'class_soc' => 'Classifica Societ&agrave',
+	'roster' => 'Anagrafica',
 
 	// stats
 	'stats_tab' => 'Statistiche',
@@ -288,6 +295,7 @@ $admin_lang = array(
 	'admin_manage_results_title' => 'Gestisci Risultati',
 	'admin_manage_events_title' => 'Gestisci Eventi',
 	'admin_print_rankings_title' => 'Stampa Classifiche',
+	'admin_manage_athletes_title' => 'Gestisci Atleti',
 
 	// event manager
 	'edit_event_text' => 'Modifica Evento',

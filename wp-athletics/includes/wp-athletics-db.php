@@ -120,8 +120,7 @@ if(!class_exists('WP_Athletics_DB')) {
 				points_class_qual integer(4),
 				points_soc_grup integer(4),
 				points_soc_qual integer(4),
-				points_indiv integer(4),
-
+				points_indiv integer(4)
 				);
 
 				CREATE TABLE $this->LOG_TABLE (
@@ -499,7 +498,10 @@ if(!class_exists('WP_Athletics_DB')) {
 					SELECT u.id, u.display_name as athlete_name, u.user_login, u.user_email, date_format(u.user_registered,'" . WPA_DATE_FORMAT . "') as user_registered,
 					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_profile_photo') as athlete_photo,
 					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_dob') as athlete_dob,
-					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_gender') as athlete_gender
+					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_gender') as athlete_gender,
+					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_scadenzacm') as athlete_scadenza_cm,
+					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_annoultimaiscrizione') as athlete_annoultimaiscrizione,
+					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_taglia') as athlete_taglia
 					FROM $this->USER_TABLE u $where ORDER BY $sortCol $sortDir LIMIT $offset,$limit
 					"
 			);
@@ -886,6 +888,51 @@ if(!class_exists('WP_Athletics_DB')) {
 			return $results;
 
         }
+
+        /**
+		 * Returns the roster for a specidied year
+		 */
+        public function get_roster( $request ) {
+           global $wpdb;
+           $year = $request['year'];
+
+           if ( $year=="last"){
+                $year=date("Y")-1;
+            }
+           if ( $year=="current"){
+                $year=date("Y");
+            }
+
+            $sql = "select u.*,um.meta_value as dob,
+            (select um.meta_value from wp_users as uu join
+            wp_usermeta as um where um.user_id=u.id and  uu.id=u.id
+            and meta_key='wp-athletics_gender') gender,
+            (select um.meta_value from wp_users as uu join
+            wp_usermeta as um where um.user_id=u.id and  uu.id=u.id
+            and meta_key='wp-athletics_tessFIDAL') tessFIDAL,
+            (select um.meta_value from wp_users as uu join
+            wp_usermeta as um where um.user_id=u.id and  uu.id=u.id
+            and meta_key='wp-athletics_scadenzacm') scadenzacm,
+            (select um.meta_value from wp_users as uu join
+            wp_usermeta as um where um.user_id=u.id and  uu.id=u.id
+            and meta_key='wp-athletics_taglia') taglia,
+            (select um.meta_value from wp_users as uu join
+            wp_usermeta as um where um.user_id=u.id and  uu.id=u.id
+            and meta_key='first_name') first_name,
+            (select um.meta_value from wp_users as uu join
+            wp_usermeta as um where um.user_id=u.id and  uu.id=u.id
+            and meta_key='last_name') last_name
+            from wp_users as u join
+            wp_usermeta as um where um.user_id=u.id
+            and meta_key='wp-athletics_dob'
+            and u.id in (select distinct id from wp_usermeta
+            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='2018')";
+
+            $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
+
+            return $results;
+
+         }
 
         /**
 		 * Returns the quality ranking for a specidied year
@@ -1810,6 +1857,10 @@ if(!class_exists('WP_Athletics_DB')) {
 			$dob = $data['dob'];
 			$email = $data['email'];
 			$user_id = $data['userId'];
+			$scadenza_cm = $data['scadenza_cm'];
+			$annoultimaiscrizione =  $data['annoultimaiscrizione'];
+			$taglia = $data['taglia'];
+
 			
 			$user = get_user_by( 'id', $user_id );
 			if($user) {
@@ -1830,6 +1881,16 @@ if(!class_exists('WP_Athletics_DB')) {
 					if($gender != '') {
 						update_user_meta( $user_id, 'wp-athletics_gender', $gender );
 					}
+					if(scadenza_cm != '') {
+						update_user_meta( $user_id, 'wp-athletics_scadenzacm', $scadenza_cm );
+					}
+					if($gender != '') {
+						update_user_meta( $user_id, 'wp-athletics_annoultimaiscrizione', $annoultimaiscrizione );
+					}
+					if($gender != '') {
+						update_user_meta( $user_id, 'wp-athletics_taglia', $taglia );
+					}
+
 					$success = true;
 				}
 			}

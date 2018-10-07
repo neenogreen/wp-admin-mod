@@ -1619,7 +1619,16 @@ var WPA = {
 	   dtBirth = new Date(varBirthDate);
 	   
 	   // get as of date
-	   dtAsOfDate = new Date(varAsOfDate);
+	   dtAsOfDateOrig = new Date(varAsOfDate);
+
+	   //trick to change category at the end of the year
+	   dtAsOfDate = new Date(Date.UTC( dtAsOfDateOrig.getUTCFullYear()-1,
+	                                12,
+	                                31,
+	                                23,
+	                                59,
+	                                59 ))
+
 
 	   // if as of date is on or after born date
 	   if ( dtAsOfDate >= dtBirth )
@@ -2292,6 +2301,7 @@ var WPA = {
 	      dateFormat: WPA.Settings['display_date_format'],
 	      yearRange: 'c-100:c'
 	    });
+
 	},
 	
 	/**
@@ -2806,7 +2816,8 @@ var WPA = {
 	
 	renderAdminDeleteEditAthleteColumn: function (data, type, full) {
 		return '<div class="datatable-icon delete" onclick="WPA.Admin.deleteAthlete(' + data + ')" title="' + WPA.getProperty('delete_athlete_tooltip') + '"></div>' +
-		'&nbsp;<div class="datatable-icon edit" onclick="WPA.Admin.displayEditAthlete(' + data + ',\'' + full['athlete_dob'] + '\',\'' + full['athlete_name'] + '\',\'' + full['athlete_gender'] + '\',\'' + full['user_email'] + '\')" title="' + WPA.getProperty('edit_athlete_tooltip') + '"></div>';
+		'&nbsp;<div class="datatable-icon edit" onclick="WPA.Admin.displayEditAthlete(' + data + ',\'' + full['athlete_dob'] + '\',\'' +
+		 full['athlete_name'] + '\',\'' + full['athlete_gender'] + '\',\'' + full['user_email'] + '\',\'' + full['athlete_scadenza_cm'] + '\',\'' + full['athlete_annoultimaiscrizione'] + '\',\'' + full['athlete_taglia'] + '\')"title="' + WPA.getProperty('edit_athlete_tooltip') + '"></div>';
 	},
 	
 	renderAdminDeleteEditResultColumn: function (data, type, full) {
