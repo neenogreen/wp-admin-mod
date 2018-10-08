@@ -450,10 +450,12 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 						</div>
 
 						<!-- ADD RESULT BUTTON -->
-						<div id="wpa-profile-add-result">
-							<button><?php echo $this->get_property('my_results_add_result_button') ?></button>
-						</div>
 
+                        <?php if( current_user_can('editor') || current_user_can('administrator') ) {  ?>
+                            <div id="wpa-profile-add-result">
+                                <button><?php echo $this->get_property('my_results_add_result_button') ?></button>
+                            </div>
+                        <?php } ?>
 						<br style="clear:both"/>
 					</div>
 

@@ -174,7 +174,6 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 					<thead>
 						<tr>
 							<th></th>
-							<th><?= $this->get_property('column_lastname') ?></th>
 							<th><?= $this->get_property('column_firstname') ?></th>
 							<th><?= $this->get_property('column_tessFIDAL') ?></th>
 							<th><?= $this->get_property('column_scadenzacm') ?></th>
@@ -187,8 +186,7 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 					?>
 								<tr>
 									<td class="center rank"></td>
-									<td><?= $result->last_name ?></td>
-									<td><?= $result->first_name ?></td>
+									<td><?= $result->display_name ?></td>
 									<td><?= $result->tessFIDAL ?></td>
 									<td><?= $result->scadenzacm ?></td>
 								</tr>

@@ -2550,13 +2550,14 @@ var WPA = {
 		    });
 	
 			// add result button
+			/*
 			jQuery('#wpa-profile-add-result button').button({
 				icons: {
 	              primary: 'ui-icon-circle-plus'
 	            }
 			}).click(function() {
 				WPA.launchAddResultDialog();
-			});
+			});*/
 			
 			// add result event combo
 			jQuery("#addResultEventCategory").combobox({

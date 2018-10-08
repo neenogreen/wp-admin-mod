@@ -40,7 +40,8 @@ WPA.Events = {
 			WPA.Events.processContent();
 			
 			// add result button
-			/**jQuery('button.event-add-result').button({
+			/*
+			jQuery('button.event-add-result').button({
 				icons: {
 	              primary: 'ui-icon-circle-plus'
 	            }
