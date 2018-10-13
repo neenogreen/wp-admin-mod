@@ -300,35 +300,39 @@ if( !class_exists( 'WPA_Base' ) ) {
 
 				$user_id = $current_user->ID;
 
-				if( isset( $_POST['userId'] ) && $_POST['userId'] != '' ) {
-					$user_id = $_POST['userId'];
+				if( ! current_user_can('administrator') ){
+				    $result = array('success'=>false);
 				}
+				else{
+                    if( isset( $_POST['userId'] ) && $_POST['userId'] != '' ) {
+                        $user_id = $_POST['userId'];
+                    }
 
-				if(isset( $gender ) ) {
-					wpa_log('updating gender');
-					update_user_meta( $user_id, 'wp-athletics_gender', $gender );
-				}
-				if(isset( $dob ) ) {
-					wpa_log('updating dob');
-					update_user_meta( $user_id, 'wp-athletics_dob', $dob );
-				}
-				if(isset( $hide_dob ) ) {
-					wpa_log('updating hide dob value');
-					update_user_meta( $user_id, 'wp-athletics_hide_dob', ( $hide_dob == 'true' ? 'yes' : 'no' ) );
-				}
-				if(isset( $fave_event ) ) {
-					wpa_log('updating fave event');
-					update_user_meta( $user_id, 'wp-athletics_fave_event_category', $fave_event );
-				}
-				if(isset( $display_name ) ) {
-					wpa_log('updating display name');
-					$this->wpa_db->update_user_display_name( $user_id, $display_name );
-				}
+                    if(isset( $gender ) ) {
+                        wpa_log('updating gender');
+                        update_user_meta( $user_id, 'wp-athletics_gender', $gender );
+                    }
+                    if(isset( $dob ) ) {
+                        wpa_log('updating dob');
+                        update_user_meta( $user_id, 'wp-athletics_dob', $dob );
+                    }
+                    if(isset( $hide_dob ) ) {
+                        wpa_log('updating hide dob value');
+                        update_user_meta( $user_id, 'wp-athletics_hide_dob', ( $hide_dob == 'true' ? 'yes' : 'no' ) );
+                    }
+                    if(isset( $fave_event ) ) {
+                        wpa_log('updating fave event');
+                        update_user_meta( $user_id, 'wp-athletics_fave_event_category', $fave_event );
+                    }
+                    if(isset( $display_name ) ) {
+                        wpa_log('updating display name');
+                        $this->wpa_db->update_user_display_name( $user_id, $display_name );
+                    }
 
-				$result = array('success'=>true);
+                    $result = array('success'=>true);
 
-				$this->wpa_db->write_to_log( 'profile_update', $this->process_log_content( 'profile_update' ) );
-
+                    $this->wpa_db->write_to_log( 'profile_update', $this->process_log_content( 'profile_update' ) );
+                }
 				// return as json
 				wp_send_json($result);
 			//}

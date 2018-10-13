@@ -228,7 +228,7 @@ if(!class_exists('WP_Athletics_DB')) {
                           points_soc_grup=0,
                       points_class_qual=0,
                       points_soc_qual=0,
-                      points_indiv=floor(v_meters/1000)
+                      points_indiv=ceil(v_meters/1000)
 
                       where id=v_id;
                     end if;

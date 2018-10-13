@@ -362,40 +362,18 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 								<!-- DISPLAY NAME -->
 								<div class="wpa-profile-field">
 									<label><?php echo $this->get_property('my_profile_display_name_label'); ?>:</label>
-									<input type="text" id="myProfileDisplayName" size="20" maxlength="30" class="ui-widget ui-widget-content ui-state-default ui-corner-all" value="<?php echo $user_display_name; ?>"/>
+									<input  disabled="disabled"  type="text" id="myProfileDisplayName" size="20" maxlength="30" class="ui-widget ui-widget-content ui-state-default ui-corner-all" value="<?php echo $user_display_name; ?>"/>
 								</div>
 
 								<!-- FAVOURITE EVENT -->
+								<!--
 								<div class="wpa-profile-field">
 									<label><?php echo $this->get_property('my_profile_fave_event'); ?>:</label>
 									<select id="myProfileFaveEvent">
 										<option value=""><?php echo $this->get_property('my_profile_select_fave_event'); ?></option>
 									</select>
 								</div>
-
-								<!-- GENDER -->
-								<div class="wpa-profile-field">
-									<label><?php echo $this->get_property('my_profile_gender'); ?>:</label>
-									<select id="myProfileGender">
-										<option value="M"><?php echo $this->get_property('gender_M'); ?></option>
-										<option value="F"><?php echo $this->get_property('gender_F'); ?></option>
-									</select>
-								</div>
-							</div>
-
-							<div class="wpa-profile-info-fieldset">
-
-								<!-- DATE OF BIRTH -->
-								<div class="wpa-profile-field" style="padding-bottom:3px">
-									<label><?php echo $this->get_property('my_profile_dob'); ?>:</label>
-									<input readonly="readonly" class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="30" type="text" id="myProfileDOB"/>
-								</div>
-
-								<!-- HIDE DATE OF BIRTH ON PROFILE -->
-								<div class="wpa-profile-field">
-									<label for="myProfileHideDOB"><?php echo $this->get_property('my_profile_hide_dob'); ?>:</label>
-									<input style="position:relative; top:2px;" type="checkbox" id="myProfileHideDOB"/>
-								</div>
+								-->
 
 								<!--  AGE CLASS -->
 								<div class="wpa-profile-field">
@@ -403,7 +381,39 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 									<input type="text" disabled="disabled" id="myProfileAgeClass" size="20" class="ui-widget ui-widget-content ui-state-default ui-corner-all wpa-field-noborder"/>
 								</div>
 
+								<!-- GENDER -->
+								<!--
+								<div class="wpa-profile-field">
+									<label><?php echo $this->get_property('my_profile_gender'); ?>:</label>
+									<select disabled="true" id="myProfileGender">
+										<option value="M"><?php echo $this->get_property('gender_M'); ?></option>
+										<option value="F"><?php echo $this->get_property('gender_F'); ?></option>
+									</select>
+								</div>
+								-->
 							</div>
+                            <!--
+							<div class="wpa-profile-info-fieldset"> -->
+
+								<!-- DATE OF BIRTH -->
+								<!--
+								<div class="wpa-profile-field" style="padding-bottom:3px">
+									<label><?php echo $this->get_property('my_profile_dob'); ?>:</label> -->
+									<!-- class="ui-widget ui-widget-content ui-state-default ui-corner-all" -->
+									<!-- <input readonly="readonly"  size="30" type="text" id="myProfileDOB"/>
+								</div> -->
+
+								<!-- HIDE DATE OF BIRTH ON PROFILE -->
+                                <!--
+								<div class="wpa-profile-field">
+									<label for="myProfileHideDOB"><?php echo $this->get_property('my_profile_hide_dob'); ?>:</label>
+									<input style="position:relative; top:2px;" type="checkbox" id="myProfileHideDOB"/>
+								</div> -->
+
+
+
+                            <!--
+							</div> -->
 
 							<br style="clear:both;"/>
 

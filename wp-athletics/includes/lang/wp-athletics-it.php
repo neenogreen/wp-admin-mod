@@ -14,17 +14,19 @@ $common_lang = array(
 	'column_event_name' => 'Evento',
 	'column_points' => 'Punti',
 	'column_athlete_name' => 'Atleta',
+	'column_members_attending' => 'Atleti che parteciperanno',
 	'column_athlete_username' => 'Nome utente',
 	'column_athlete_email' => 'Email',
 	'column_athlete_registered' => 'Registrato',
 	'column_event_location' => 'Luogo',
 	'column_category' => 'Categoria',
+	'column_members_attending' => 'Atleti che parteciperanno',
 	'column_time' => 'Tempo',
 	'column_points_class_qual' => 'Punti Qua.',
 	'column_pace' => 'Andatura',
 	'column_position' => 'Pos.',
 	'column_garmin' => 'Garmin',
-	'column_age_category' => 'Classe',
+	'column_age_category' => 'Categoria',
 	'column_rankings' => 'Classifiche',
 	'column_club_rank' => 'Posizione',
 	'column_result_count' => 'Result Count',
@@ -58,6 +60,7 @@ $common_lang = array(
 	'filter_month_all' => 'Tutti i mesi',
 	'filter_period_option_this_month' => 'Questo Mese',
 	'filter_period_option_this_year' => 'Questo Anno',
+	'filter_period_option_next_year' => 'Prossimo Anno',
 	'filter_type_option_all' => 'Tutti i tipi di gara',
 	'filter_age_option_all' => 'Tutte le categorie',
 	'filter_event_name_input_text' => 'Filtra nome evento',
@@ -68,6 +71,11 @@ $common_lang = array(
 	// user profile dialog
 	'user_profile_dialog_title' => 'Profilo Utente',
 
+    // event results dialog
+	'event_results_dialog_title' => 'Risultati della gara',
+	'future_event_dialog_title' => "Dettagli della gara",
+	'event_dialog_future_event_info' => 'Questo è un evento futuro.',
+
 	// event results dialog
 	'event_results_dialog_title' => 'Risultati Evento',
 	'event_youre_going_text' => "Parteciperai",
@@ -77,6 +85,9 @@ $common_lang = array(
 	'event_i_ran_this_text' => 'Ho partecipato',
 	'event_i_didnt_go_text' => "Non ho partecipato",
 	'event_you_ran_this_pending_text' => 'Hai partecipato, aggiungi il tuo risultato',
+	'event_runners_going' => 'atleti partecipanti',
+	'legend_future_events' => 'Eventi Futuri',
+	'filter_only_future_events' => 'Solo eventi futuri',
 
 	// generic results dialog
 	'generic_results_dialog_title' => 'Visualizza Risultati',

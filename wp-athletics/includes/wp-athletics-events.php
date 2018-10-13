@@ -243,7 +243,8 @@ if(!class_exists('WP_Athletics_Events')) {
 
 					<!-- FILTERS -->
 					<div class="wpa-filters ui-corner-all">
-
+                        <input class="future-checkbox" type="checkbox" id="future-events-checkbox"/>
+						<label class="future-checkbox"for="future-events-checkbox"><?= $this->get_property('filter_only_future_events') ?></label>
 						<select id="filterYear">
 							<option selected="selected" show-future="1" value="<?php echo $this_year; ?>"><?php echo $this->get_property('filter_period_option_this_year'); ?></option>
 							<option show-future="1" value="<?php echo ((int)$this_year+1); ?>"><?php echo $this->get_property('filter_period_option_next_year'); ?></option>
@@ -256,13 +257,12 @@ if(!class_exists('WP_Athletics_Events')) {
 							}
 							?>
 						</select>
+
 						<?php 
 						if( is_user_logged_in() && get_option( 'wp-athletics-allow-users-submit-events', 'yes' ) == 'yes' ) {
 						?>
 						<button class="submit-event" id="submit-event-button"><?= $this->get_property('submit_event_button') ?></button>
-						<input class="future-checkbox" type="checkbox" id="future-events-checkbox"/>
-						<label class="future-checkbox"for="future-events-checkbox"><?= $this->get_property('filter_only_future_events') ?></label>
-						<?php 
+						<?php
 						}
 						?>
 
@@ -291,7 +291,7 @@ if(!class_exists('WP_Athletics_Events')) {
 				<!-- EVENTS -->
 				<div id="wpa-events">
 				<?php 
-					for($i = 12; $i >= 1; $i--) {
+					for($i = 1; $i <= 12; $i++) {
 				?>
 						<div class="event-month month-<?= $i ?>">
 							<p><?= $this->get_property('month_' . $i)?></p>

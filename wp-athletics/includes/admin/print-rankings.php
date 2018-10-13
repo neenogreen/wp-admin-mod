@@ -23,7 +23,7 @@ if ( $this->has_permission_to_manage() ) {
 
 				jQuery('#adminmenuwrap,#adminmenuback,#wpfooter,#wpadminbar,.update-nag').hide();
 				jQuery('#wpcontent').css('marginLeft', '0px');
-				jQuery('.wp-toolbar').css('paddingTop', '0px');
+				jQuery('.wp-toolbar').css('paddingTop', '100px');
 
 				var gender = '<?php echo $_GET['gender']; ?>';
 				var event = '<?php echo $_GET['event']; ?>';
