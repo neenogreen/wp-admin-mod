@@ -926,7 +926,7 @@ if(!class_exists('WP_Athletics_DB')) {
             wp_usermeta as um where um.user_id=u.id
             and meta_key='wp-athletics_dob'
             and u.id in (select distinct id from wp_usermeta
-            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='2018')";
+            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='%d')";
 
             $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
 

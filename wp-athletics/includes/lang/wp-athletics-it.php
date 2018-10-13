@@ -103,7 +103,7 @@ $common_lang = array(
 	'my_results_personal_bests_tab' => 'I miei Personal Bests',
 
 	// results - tabs
-	'results_main_tab' => 'Resultati',
+	'results_main_tab' => 'Risultati',
 	'results_personal_bests_tab' => 'Personal Bests',
 
 	// wpa search
@@ -220,6 +220,7 @@ $common_lang = array(
 	'stats_label_event_avg' => 'Media',
 	'stats_event_chart_title' => 'Performance Recente',
 	'stats_runners_chart_title' => 'Top 10 Gare pi&ugrave; partecipate',
+	'shortcode_table_no_results' => 'Nessun risultato da mostrare',
 
 	// pace
 	'pace_minute' => 'min',
@@ -261,7 +262,7 @@ $common_lang = array(
 	'month_5' => 'Maggio',
 	'month_6' => 'Giugno',
 	'month_7' => 'Luglio',
-	'month_8' => 'Augosto',
+	'month_8' => 'Agosto',
 	'month_9' => 'Settembre',
 	'month_10' => 'Ottobre',
 	'month_11' => 'Novembre',
@@ -338,7 +339,7 @@ $admin_lang = array(
 	'reassign_results_error' => 'C\'&egrave; stato un problema di riassegnazione i risultati per questo utente',
 
 	// add results
-	'admin_add_results_title' => 'Aggiungi Resultati',
+	'admin_add_results_title' => 'Aggiungi Risultati',
 	'add_results_event_input_text' => 'Start typing event name',
 	'add_results_choose_event_title' => 'Scegli Evento',
 	'add_results_choose_event_text' => 'Selezionare l\'evento che si desidera aggiungere per i risultati. Controllare se l\'evento &egrave; gi&agrave; presente digitando il nome. Se non esiste, &egrave; sufficiente creare un nuovo evento.',
@@ -374,7 +375,12 @@ $admin_lang = array(
 	// log
 	'log_admin_column_date' => 'Date',
 	'log_admin_column_type' => 'Log Type',
-	'log_admin_column_log' => 'Log'
+	'log_admin_column_log' => 'Log',
+
+	// add results
+	'admin_add_results_title' => 'Aggiungi risultati',
+	'add_results_title' => 'Aggiungi risultati'
+
 );
 
 return array(

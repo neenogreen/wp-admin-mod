@@ -2346,7 +2346,11 @@ var WPA = {
 		// populate the event info and open dialog
 		WPA.Ajax.getEventInfo(id, function(result) {
 			// inputs
-			jQuery('#editResultDate').removeClass('ui-state-error').datepicker('setDate', result.date);
+
+
+			jQuery('#editResultDate').removeClass('ui-state-error').datepicker('setDate', WPA.translate(result.date));
+
+
 			jQuery('#editEventName').removeClass('ui-state-error').val(result.name);
 			jQuery('#editEventId').val(result.id);
 			jQuery('#editEventLocation').removeClass('ui-state-error').val(result.location).change();
