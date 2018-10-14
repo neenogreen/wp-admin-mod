@@ -1535,8 +1535,13 @@ var WPA = {
                 date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(resultDate) );
 			}
 			catch (err){
-			   dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(WPA.userDOB) );
-                date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(resultDate) );
+			   try{
+			     dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(WPA.userDOB) );
+                 date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(resultDate) );
+                }
+			    catch(err){
+			        return this.howOld(date, dob);
+			    }
 			}
 			return this.howOld(date, dob);
 		}
@@ -1559,6 +1564,7 @@ var WPA = {
                 date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(date) );
                 }
                 catch (err){
+
                 dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
                 date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(date) );
 
@@ -1591,7 +1597,12 @@ var WPA = {
 			    dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(dob) );
 			}
 			catch(err){
-			    dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
+			    try{
+			        dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
+			    }
+			    catch(err){
+			        return this.calculateAthleteAgeCategory(new Date(), dob);
+			    }
 			}
 			return this.calculateAthleteAgeCategory(new Date(), dob);
 		}
