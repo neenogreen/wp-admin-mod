@@ -143,7 +143,14 @@ $common_lang = array(
 	'help_add_result_garmin_id' => 'Se tu hai un attivit&agrave; registrata in Garmin Connect, copia e incolla il codice attivit&agrave; (ID) in questo campo.<br/><br/>Per esempio se l\'indirizzo web della tua attivit&agrave; &egrave; <strong>http://connect.garmin.com/activity/317262142</strong>, il codice ID &egrave; <strong>317262142</strong>',
 	'help_add_result_cancel_event' => 'Rimuovi l\'evento scelto',
 	'help_column_rank' => 'Rappresenta una classifica del club di tutti i tempi per questo risultato in base al sesso, categoria di eventi e categoria di et&agrave;',
-
+    'help_column_age_grade' => 'L\'age grade è una misura di performance che mette tutti i runner sullo stesso piano.
+    In particolare, tale punteggio ti permette di comparare i tuoi tempi di gara con quelli di altri runner di tutto il mondo della tua stessa et&agrave e sesso.
+		<br/><br/>Ogni valore &egrave; calcolato usando i dati del 2015 World Masters Association (WMA)<br/><br/>
+		<b>I percentili possono essere interpretati come segue:</b><br/><br/>
+		<br/><b>- Oltre 90%</b> Livello Mondiale </li>
+		<br/><b>- Oltre 80%</b> Livello Nazionale</li>
+		<br/><b>- Oltre 70%</b> Livello Regionale</li>
+		<br/><b>- Oltre 60%</b> Livello Locale</li><br/><br/>',
 	// datatables
 	'table_no_results' => 'Non ci sono records da visualizzare',
 	'table_loading_message' => 'Carico i Risultati...',
@@ -220,6 +227,9 @@ $common_lang = array(
 	'stats_label_event_avg' => 'Media',
 	'stats_event_chart_title' => 'Performance Recente',
 	'stats_runners_chart_title' => 'Top 10 Gare pi&ugrave; partecipate',
+	'age_grade_bronze_text' => 'Livello Regionale',
+	'age_grade_silver_text' => 'Livello Nazionale',
+	'age_grade_gold_text' => 'Livello Mondiale',
 	'shortcode_table_no_results' => 'Nessun risultato da mostrare',
 
 	// pace
