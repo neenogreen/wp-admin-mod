@@ -926,8 +926,8 @@ if(!class_exists('WP_Athletics_DB')) {
             from wp_users as u join
             wp_usermeta as um where um.user_id=u.id
             and meta_key='wp-athletics_dob'
-            and u.id in (select distinct id from wp_usermeta
-            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='%d')";
+            and u.id in (select distinct user_id from wp_usermeta
+            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='%d') order by last_name";
 
             $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
 
