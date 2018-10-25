@@ -1939,10 +1939,10 @@ var WPA = {
 			jQuery('#addResultTimeMinutes').val(time.minutes);
 			jQuery('#addResultTimeSeconds').val(time.seconds);
 			jQuery('#addResultTimeMilliSeconds').val(time.milliseconds);
-			jQuery('#addPuntiQual').val(result.points_class_qual);
-			jQuery('#addPuntiSoc').val(result.points_class_qual);
-			jQuery('#addPuntiSocQual').val(result.points_class_qual);
-			jQuery('#addPuntiIndiv').val(result.points_class_qual);
+			//jQuery('#addPuntiQual').val(result.points_class_qual);
+			//jQuery('#addPuntiSoc').val(result.points_class_qual);
+			//jQuery('#addPuntiSocQual').val(result.points_class_qual);
+			//jQuery('#addPuntiIndiv').val(result.points_class_qual);
 
 			
 			if(!result.age_category) {
@@ -2100,10 +2100,10 @@ var WPA = {
 				paceKm: paces.km,
 				paceMiles: paces.miles,
 				isPending: jQuery('#isPendingResult').val(),
-				points_class_qual: jQuery('#addPuntiQual').val() ,
-				points_class_soc: jQuery('#addPuntiSoc').val() ,
-				points_class_soc: jQuery('#addPuntiSocQual').val() ,
-				points_class_indiv: jQuery('#addPuntiIndiv').val() ,
+				//points_class_qual: jQuery('#addPuntiQual').val() ,
+				//points_class_soc: jQuery('#addPuntiSoc').val() ,
+				//points_class_soc: jQuery('#addPuntiSocQual').val() ,
+				//points_class_indiv: jQuery('#addPuntiIndiv').val() ,
 				ageGrade: ageGrade
 			}, function() {
 				WPA.toggleLoading(false);
@@ -2833,7 +2833,8 @@ var WPA = {
 	renderAdminDeleteEditAthleteColumn: function (data, type, full) {
 		return '<div class="datatable-icon delete" onclick="WPA.Admin.deleteAthlete(' + data + ')" title="' + WPA.getProperty('delete_athlete_tooltip') + '"></div>' +
 		'&nbsp;<div class="datatable-icon edit" onclick="WPA.Admin.displayEditAthlete(' + data + ',\'' + full['athlete_dob'] + '\',\'' +
-		 full['athlete_name'] + '\',\'' + full['athlete_gender'] + '\',\'' + full['user_email'] + '\',\'' + full['athlete_scadenza_cm'] + '\',\'' + full['athlete_annoultimaiscrizione'] + '\',\'' + full['athlete_taglia'] + '\')"title="' + WPA.getProperty('edit_athlete_tooltip') + '"></div>';
+		 full['athlete_name'] + '\',\'' + full['athlete_gender'] + '\',\'' + full['user_email'] + '\',\'' + full['athlete_scadenza_cm'] + '\',\'' +
+		 full['athlete_annoultimaiscrizione'] + '\',\'' + full['athlete_tessFIDAL'] + '\',\''+ full['athlete_taglia'] + '\')"title="' + WPA.getProperty('edit_athlete_tooltip') + '"></div>';
 	},
 	
 	renderAdminDeleteEditResultColumn: function (data, type, full) {

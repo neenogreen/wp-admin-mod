@@ -501,6 +501,7 @@ if(!class_exists('WP_Athletics_DB')) {
 					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_gender') as athlete_gender,
 					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_scadenzacm') as athlete_scadenza_cm,
 					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_annoultimaiscrizione') as athlete_annoultimaiscrizione,
+					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_tessFIDAL') as athlete_tessFIDAL,
 					(SELECT meta_value FROM wp_usermeta um WHERE um.user_id = u.id AND um.meta_key = 'wp-athletics_taglia') as athlete_taglia
 					FROM $this->USER_TABLE u $where ORDER BY $sortCol $sortDir LIMIT $offset,$limit
 					"
@@ -1302,28 +1303,27 @@ if(!class_exists('WP_Athletics_DB')) {
 			$is_admin_update = isset($data['isAdmin']) && $data['isAdmin'] != '';
 			$is_demo_mode = isset($data['isDemo']) && $data['isDemo'] != '';
 			$create_event = $data['eventId'] == null || $data['eventId'] == '';
-			$points_class_qual = 0;
-			$points_soc_grup = 0;
-			$points_indiv = 0;
-			$points_soc_qual = 0;
-
-			if (isset($data['points_class_qual'])){
-			    $points_class_qual = $data['points_class_qual'];
-
-			}
-
-			if (isset($data['points_class_soc'])){
-			    $points_soc_grup = $data['points_class_soc'];
-
-			}
-			if (isset($data['points_class_indiv'])){
-			    $points_indiv = $data['points_class_indiv'];
-
-			}
-			if (isset($data['points_soc_qual'])){
-			    $points_soc_qual = $data['points_soc_qual'];
-
-			}
+			//$points_class_qual = 0;
+			//$points_soc_grup = 0;
+			//$points_indiv = 0;
+			//$points_soc_qual = 0;
+            /**
+			*if (isset($data['points_class_qual'])){
+			*    $points_class_qual = $data['points_class_qual'];
+            *
+            *}
+			*if (isset($data['points_class_soc'])){
+			*    $points_soc_grup = $data['points_class_soc'];
+			*}
+			*if (isset($data['points_class_indiv'])){
+			*    $points_indiv = $data['points_class_indiv'];
+            *
+			*}
+			*if (isset($data['points_soc_qual'])){
+			*    $points_soc_qual = $data['points_soc_qual'];
+            *
+			*}
+			*/
 
 
 
@@ -1371,10 +1371,10 @@ if(!class_exists('WP_Athletics_DB')) {
 						'age_grade' => $data['ageGrade'],
 						'gender' => $data['gender'],
 						'pending' => '0',
-						'points_class_qual' => $points_class_qual,
-						'points_soc_grup' => $points_soc_grup,
-						'points_indiv' => $points_indiv,
-						'points_soc_qual' => $points_soc_qual
+						//'points_class_qual' => $points_class_qual,
+						//'points_soc_grup' => $points_soc_grup,
+						//'points_indiv' => $points_indiv,
+						//'points_soc_qual' => $points_soc_qual
 					),
 					array( 'id' => $data['resultId'] ),
 					array(
@@ -1385,10 +1385,10 @@ if(!class_exists('WP_Athletics_DB')) {
 						'%s',
 						'%f',
 						'%s',
-						'%d',
-						'%d',
-						'%d',
-						'%d'
+						'%d' //,
+						//'%d',
+						//'%d',
+						//'%d'
 					),
 					array( '%d' )
 				);
@@ -1503,10 +1503,16 @@ if(!class_exists('WP_Athletics_DB')) {
 			global $wpdb;
 			$result = $wpdb->get_row(
 				"
-				SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending, r.points_class_qual, r.points_soc_grup,r.points_soc_qual,r.points_indiv
+				SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending
 				FROM $this->RESULT_TABLE r WHERE r.id = $id
 				"
 			);
+			/**
+			* "
+			*	SELECT r.id, r.time, r.garmin_id, r.position, r.event_id, r.age_category, r.pending, r.points_class_qual, r.points_soc_grup,r.points_soc_qual,r.points_indiv
+			*	FROM $this->RESULT_TABLE r WHERE r.id = $id
+			*	"
+			*/
 
 			return $result;
 		}
@@ -1859,6 +1865,7 @@ if(!class_exists('WP_Athletics_DB')) {
 			$user_id = $data['userId'];
 			$scadenza_cm = $data['scadenza_cm'];
 			$annoultimaiscrizione =  $data['annoultimaiscrizione'];
+			$tessFIDAL =  $data['tessFIDAL'];
 			$taglia = $data['taglia'];
 
 			
@@ -1886,6 +1893,9 @@ if(!class_exists('WP_Athletics_DB')) {
 					}
 					if($gender != '') {
 						update_user_meta( $user_id, 'wp-athletics_annoultimaiscrizione', $annoultimaiscrizione );
+					}
+					if($gender != '') {
+						update_user_meta( $user_id, 'wp-athletics_tessFIDAL', $tessFIDAL );
 					}
 					if($gender != '') {
 						update_user_meta( $user_id, 'wp-athletics_taglia', $taglia );

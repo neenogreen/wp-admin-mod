@@ -226,6 +226,7 @@ WPA.Ajax = {
 					dob: jQuery('#editAthleteDob').val(),
 					scadenza_cm: jQuery('#editAthleteScadenzaCM').val(),
 					annoultimaiscrizione: jQuery('#editAthleteAnnoUltimaIscrizione').val(),
+					tessFIDAL: jQuery('#editAthletetessFIDAL').val(),
 					taglia: jQuery('#editAthleteTaglia').val()
 				},
 				success: function(result) {

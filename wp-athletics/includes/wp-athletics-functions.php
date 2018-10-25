@@ -986,6 +986,10 @@ if( !class_exists( 'WPA_Base' ) ) {
 				<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="20" type="text" id="editAthleteAnnoUltimaIscrizione"/>
 			</div>
 			<div class="wpa-add-result-field add-result-no-bg">
+				<label><?php echo $this->get_property('column_tessFIDAL'); ?>:</label>
+				<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="20" type="text" id="editAthletetessFIDAL"/>
+			</div>
+			<div class="wpa-add-result-field add-result-no-bg">
 				<label><?php echo $this->get_property('column_size'); ?>:</label>
 				<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="20" type="text" id="editAthleteTaglia"/>
 			</div>
@@ -1097,6 +1101,7 @@ if( !class_exists( 'WPA_Base' ) ) {
 						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="30" type="text" id="addResultGarminId" value="">
 						<span class="wpa-help" title="<?php echo $this->get_property('help_add_result_activity_url'); ?>"></span>
 					</div>
+					<!--
 					<div class="wpa-add-result-field add-result-no-bg">
 						<label>Punti Qual.:</label>
 						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="5" type="text" id="addPuntiQual" value="">
@@ -1113,6 +1118,7 @@ if( !class_exists( 'WPA_Base' ) ) {
 						<label>Punti Soc. Qual.:</label>
 						<input class="ui-widget ui-widget-content ui-state-default ui-corner-all" size="5" type="text" id="addPuntiSocQual" value="">
 					</div>
+					-->
 				</form>
 			</div>
 			<?php
