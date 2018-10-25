@@ -328,9 +328,10 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 							// once off operation to calculate all age grades
 							if(!WPA.ageGradesDone) {
 								WPA.Ajax.updateUserAgeGrades(function(count) {
-									WPA.alert('We have now added age grading functionality to the system. ' +
-										WPA.getProperty('help_column_age_grade') + '<br/><br/><b>For each of your ' + count + ' historic results, the age grade % has just been calculated. ' +
-										'Refresh the page to view your age grades.');
+									WPA.alert('Abbiamo aggiunto una nuova funzionalit&agrave;,' +
+										WPA.getProperty('help_column_age_grade') + '<br/><br/><b>
+										Per ognuno dei tuoi ' + count + ' risultati presenti, l'age grade è appena stato calcolato. ' +
+										'Aggiorna la pagina per vedere il tuo piazzamento.');
 								});
 							}
 						});

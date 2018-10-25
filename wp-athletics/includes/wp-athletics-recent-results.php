@@ -154,13 +154,15 @@ if(!class_exists('WP_Athletics_Recent_Results')) {
 
 					<br style="clear:both"/>
 				</div>
-				
+
+				<!--
 				<div style="display:none" class="feed-content-empty" id="recent-results-empty">
 					<p><?= $this->get_property('recent_results_empty_text'); ?></p>
 					<a href="<?= get_permalink(get_option('wp-athletics_my_results_page_id')); ?>">
 					<?= $this->get_property('recent_results_empty_add_result'); ?>
 					</a>
 				</div>
+				-->
 
 				<!-- RECENT RESULTS -->
 				<div id="recent-results">
