@@ -229,8 +229,16 @@ if(!class_exists('WP_Athletics_DB')) {
                       points_class_qual=0,
                       points_soc_qual=0,
                       points_indiv=ceil(v_meters/1000)
-
                       where id=v_id;
+                      elseif v_subtype='A' then
+                      update wp_wpa_result
+                     set
+                          points_soc_grup=0,
+                      points_class_qual=0,
+                      points_soc_qual=0,
+                      points_indiv=0
+                      where id=v_id;
+
                     end if;
                       set punteggio = punteggio-1;
 
