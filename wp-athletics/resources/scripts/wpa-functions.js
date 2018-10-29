@@ -1540,7 +1540,7 @@ var WPA = {
                  date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(resultDate) );
                 }
 			    catch(err){
-			        return this.howOld(date, dob);
+			        return this.howOld(resultDate, dob);
 			    }
 			}
 			return this.howOld(date, dob);
@@ -1564,10 +1564,12 @@ var WPA = {
                 date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.translate(date) );
                 }
                 catch (err){
-
-                dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
-                date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(date) );
-
+                    try {
+                        dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
+                        date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(date) );
+                        }
+                    catch{
+                    }
                 }
 
 			//date=  moment(date,WPA.getSetting('moment_display_date_format'))
