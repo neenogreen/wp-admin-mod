@@ -84,22 +84,26 @@ if( !class_exists( 'WP_Athletics_Event_Results' ) ) {
 					</div>
 					<?php echo $this->create_event_results_table('event-results-table-' . $id); ?>
 					<div id="wpa-embedded-results-bottom">
+					    <!--
 						<div id="wpa-embedded-results-actions">
 							<span onclick="WPA.launchAddResultDialog(<?php echo $id ?>, true)"><?php echo $this->get_property('embedded_event_results_add_result_link')?></span>
-						</div>
+						</div> -->
 						<div id="wpa-embedded-results-options">
 						
 							<select id="embedded-results-jump">
 							
-								<option value=""><?= $this->get_property('embeded_event_results_link_select')?></option>
+								<option value="">Visualizza<!-- <?= $this->get_property('embeded_event_results_link_select')?>--></option>
+								<!--
 								<option value="<?= get_permalink(get_option('wp-athletics_recent_results_page_id')); ?>">
-									<?= $this->get_property('embedded_event_results_recent_results_link')?>
-								</option>
+								    <?= $this->get_property('embedded_event_results_recent_results_link')?>
+								</option> -->
+								<!--
 								<option value="<?= get_permalink(get_option('wp-athletics_my_results_page_id')); ?>">
 									<?= $this->get_property('embedded_event_results_manage_link')?>
-								</option>
+								</option> -->
 								<option value="<?= get_permalink(get_option('wp-athletics_events_page_id')); ?>">
-									<?= $this->get_property('embedded_event_results_events_link')?>
+									Calendario Gare
+									<!-- <?= $this->get_property('embedded_event_results_events_link')?> -->
 								</option>
 								<?php
 								if(get_option('wp-athletics_records_mode') == 'combined') {
@@ -110,11 +114,17 @@ if( !class_exists( 'WP_Athletics_Event_Results' ) ) {
 								<?php
 								} else {
 								?>
-									<option value="<?= get_permalink(get_option('wp-athletics_records_male_page_id')); ?>">
-										<?= $this->get_property('embedded_event_results_male_records_link')?>
+
+								    <option value="<?= get_permalink('record-maschili'); ?>">
+									<!-- <option value="<?= get_permalink(get_option('wp-athletics_records_male_page_id')); ?>"> -->
+										<!-- TODO Nino: Add multilanguage support-->
+										Record Maschili
+										<!-- <?= $this->get_property('embedded_event_results_male_records_link')?>-->
 									</option>
-									<option value="<?= get_permalink(get_option('wp-athletics_records_female_page_id')); ?>">
-										<?= $this->get_property('embedded_event_results_female_records_link')?>
+									<option value="<?= get_permalink('record-femminili'); ?>">
+									<!-- <option value="<?= get_permalink(get_option('wp-athletics_records_female_page_id')); ?>"> -->
+										Record Femminili
+										<!-- <?= $this->get_property('embedded_event_results_female_records_link')?> -->
 									</option>
 								<?php
 								}
