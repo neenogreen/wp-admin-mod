@@ -324,7 +324,7 @@ if ( $this->has_permission_to_manage() ) {
 					<th>Punti Qual.
 					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
 					</th>
-					<th>Punti Soc.
+					<th>Punti Gruppo
 					<!-- TODO: fix it reading from the lang file <?php echo $this->get_property('column_points_class_qual') ?> -->
 					</th>
 					<th>Punti Indiv.

@@ -329,8 +329,8 @@ if(!class_exists('WP_Athletics_Manage_Results')) {
 							if(!WPA.ageGradesDone) {
 								WPA.Ajax.updateUserAgeGrades(function(count) {
 									WPA.alert('Abbiamo aggiunto una nuova funzionalit&agrave;,' +
-										WPA.getProperty('help_column_age_grade') + '<br/><br/><b>
-										Per ognuno dei tuoi ' + count + ' risultati presenti, l'age grade è appena stato calcolato. ' +
+										WPA.getProperty('help_column_age_grade') + '<br/><br/><b>' +
+										'Per ognuno dei tuoi ' + count + ' risultati presenti, l\'age grade è appena stato calcolato. ' +
 										'Aggiorna la pagina per vedere il tuo piazzamento.');
 								});
 							}

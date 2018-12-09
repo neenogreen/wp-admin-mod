@@ -26,7 +26,7 @@ return array(
 	'default_terrain_categories' => array(
 		'A' => 'Altro',
 		'Q' => 'Qualit&agrave',
-		'S' => 'Societ&agrave',
+		'S' => 'Gruppo',
 		'I' => 'Individuale'
 	),
 

@@ -187,7 +187,10 @@ if(!class_exists('WP_Athletics_DB')) {
                   DECLARE v_meters INT DEFAULT 0;
                   DECLARE v_subtype VARCHAR(4) DEFAULT 0;
                   DECLARE punteggio int default 100;
-                  DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_id = 0 and v_meters = 0 and v_subtype='Q';
+                  DECLARE v_skipped int default 1;
+                  DECLARE v_time_prec int default 0;
+                  DECLARE v_time int default 0;
+		  DECLARE CONTINUE HANDLER FOR NOT FOUND SET v_id = 0 and v_meters = 0 and v_subtype='Q';
                   DECLARE CONTINUE HANDLER FOR SQLEXCEPTION SET v_id = -1 and v_meters = -1 and v_subtype='Q';
 
                  update wp_wpa_result
@@ -197,8 +200,8 @@ if(!class_exists('WP_Athletics_DB')) {
                      points_soc_qual=null
                    where event_id=p_event_id;
 
-                 select a.id, c.distance_meters, b.sub_type_id
-                   INTO v_id, v_meters, v_subtype
+                 select a.id, c.distance_meters, b.sub_type_id, a.time
+                   INTO v_id, v_meters, v_subtype, v_time_prec
                    from wp_wpa_result a join wp_wpa_event b join wp_wpa_event_cat c
                   where c.id = b.event_cat_id and a.event_id=b.id and a.event_id=p_event_id
                     and a.points_class_qual is null
@@ -240,15 +243,23 @@ if(!class_exists('WP_Athletics_DB')) {
                       where id=v_id;
 
                     end if;
-                      set punteggio = punteggio-1;
-
-                      select ID
-                        INTO v_id
+                      select ID, time
+                        INTO v_id, v_time
                         from wp_wpa_result
                        where event_id=p_event_id
                          and points_class_qual is null
                       order by time asc
                         LIMIT 1;
+
+                      if v_time != v_time_prec then
+                        set punteggio = punteggio-v_skipped;
+			set v_time_prec = v_time;
+			set v_skipped = 1;
+                      else
+                        set v_skipped=v_skipped+1;
+                      end if;
+
+
                   END WHILE;
 
                   if v_id=-1 then rollback;
@@ -935,7 +946,7 @@ if(!class_exists('WP_Athletics_DB')) {
             wp_usermeta as um where um.user_id=u.id
             and meta_key='wp-athletics_dob'
             and u.id in (select distinct user_id from wp_usermeta
-            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='%d') order by last_name";
+            where meta_key='wp-athletics_annoultimaiscrizione' and meta_value='%d') order by display_name";
 
             $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
 

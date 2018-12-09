@@ -406,7 +406,7 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 							<th><?= $this->get_property('column_pace_miles') ?></th>
 							<th><?= $this->get_property('column_position') ?></th>
 							<th>Punti Qual.</th>
-							<th>Punti Soc.</th>
+							<th>Punti Gruppo</th>
 							<th></th>
 						</tr>
 					</thead>

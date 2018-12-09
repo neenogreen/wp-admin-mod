@@ -115,13 +115,13 @@ if( !class_exists( 'WP_Athletics_Event_Results' ) ) {
 								} else {
 								?>
 
-								    <option value="<?= get_permalink('record-maschili'); ?>">
+								    <option value="<?= get_permalink(237); ?>">
 									<!-- <option value="<?= get_permalink(get_option('wp-athletics_records_male_page_id')); ?>"> -->
 										<!-- TODO Nino: Add multilanguage support-->
 										Record Maschili
 										<!-- <?= $this->get_property('embedded_event_results_male_records_link')?>-->
 									</option>
-									<option value="<?= get_permalink('record-femminili'); ?>">
+									<option value="<?= get_permalink(235); ?>">
 									<!-- <option value="<?= get_permalink(get_option('wp-athletics_records_female_page_id')); ?>"> -->
 										Record Femminili
 										<!-- <?= $this->get_property('embedded_event_results_female_records_link')?> -->

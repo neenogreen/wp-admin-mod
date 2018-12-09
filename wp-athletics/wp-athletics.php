@@ -291,6 +291,7 @@ if(!class_exists('WP_Athletics')) {
 			wp_register_style( 'datatables', WPA_PLUGIN_URL . '/resources/css/jquery.dataTables.css' );
 			wp_register_style( 'wpa_style', WPA_PLUGIN_URL . '/resources/css/wpa-style.css' );
 			wp_register_style( 'wpa_simple_style', WPA_PLUGIN_URL . '/resources/css/wpa-simple-style.css' );
+
 		}
 
 		/**

@@ -1568,7 +1568,7 @@ var WPA = {
                         dob = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(dob) );
                         date = jQuery.datepicker.parseDate( WPA.getSetting('display_date_format'),  this.retranslate(date) );
                         }
-                    catch{
+                    catch (err){
                     }
                 }
 

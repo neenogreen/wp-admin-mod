@@ -196,8 +196,8 @@ $common_lang = array(
 	'time_invalid_text' => 'Tempo non corretto',
 	'time_no_value_text' => 'Indisponibile',
 	'time_days_label' => 'giorni',
-	'class_qual' => 'Classifica Qualit&agrave',
-	'class_soc' => 'Classifica Societ&agrave',
+	'class_qual' => 'Classifica Qualita',
+	'class_soc' => 'Classifica Partecipativa',
 	'roster' => 'Anagrafica',
 
 	// stats
