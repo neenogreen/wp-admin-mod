@@ -209,7 +209,7 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 		/**
 		 * Outputs a club rank table
 		 */
-		public function display_class_soc( $atts ) {
+		public function display_class_partecipativa( $atts ) {
 
 		    //we expect only year
 		    if($this->validate_attributes( $atts, 'year' ) ) {
@@ -220,7 +220,7 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 				$params = array(
 					'year' => $atts['year'],
 				);
-				$results = $this->wpa_db->get_class_soc($params);
+				$results = $this->wpa_db->get_class_partecipativa($params);
 
 				$title = "";
 				$year = $atts['year'];
@@ -258,7 +258,6 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 						<tr>
 							<th></th>
 							<th><?= $this->get_property('column_athlete_name') ?></th>
-							<th><?= $this->get_property('column_age_category') ?></th>
 							<th><?= $this->get_property('column_points') ?>   </th>
 						</tr>
 					</thead>
@@ -270,7 +269,6 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 								<tr>
 									<td class="center rank"><?= $result->rank ?></td>
 									<td><?= $result->athlete_name ?></td>
-									<td><?= $result->age_category ?></td>
 									<td><?= $result->points ?></td>
 								</tr>
 					<?php
@@ -337,6 +335,7 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 						<tr>
 							<th></th>
 							<th><?= $this->get_property('column_athlete_name') ?></th>
+							<th><?= $this->get_property('age_category') ?></th>
 							<th><?= $this->get_property('column_points') ?>   </th>
 						</tr>
 					</thead>
@@ -348,6 +347,7 @@ if(!class_exists('WP_Athletics_Simple_Shortcodes')) {
 								<tr>
 									<td class="center rank"><?= $result->rank ?></td>
 									<td><?= $result->athlete_name ?></td>
+									<td><?= $result->age_category ?></td>
 									<td><?= $result->points ?></td>
 								</tr>
 					<?php

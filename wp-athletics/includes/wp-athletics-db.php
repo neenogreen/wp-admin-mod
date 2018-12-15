@@ -888,12 +888,15 @@ if(!class_exists('WP_Athletics_DB')) {
                 $year=date("Y");
             }
 
-           $sql = "select a.display_name as athlete_name,points as points from
+           $sql = "select Concat(f.gender,f.age_category) as age_category, a.display_name as athlete_name,points as points from
                     wp_users a join (
                     select a.id,sum(b.points_class_qual) as points
                     from wp_users a join wp_wpa_result b join wp_wpa_event c
                     where a.id=b.user_id and b.event_id=c.id and date_format(c.date,'%Y')='%d'
-                    group by a.id) d where a.ID=d.id
+                    group by a.id) d
+		    join (select e.user_id,max(replace(e.age_category,'A','')) as age_category, max(gender) as gender from wp_wpa_result e group by user_id) f
+		    where a.ID=d.id and
+                    a.ID=f.user_id
                     order by points desc";
             $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
 
@@ -957,7 +960,7 @@ if(!class_exists('WP_Athletics_DB')) {
         /**
 		 * Returns the quality ranking for a specidied year
 		 */
-        public function get_class_soc( $request ) {
+        public function get_class_partecipativa( $request ) {
            global $wpdb;
            $year = $request['year'];
 
@@ -967,18 +970,16 @@ if(!class_exists('WP_Athletics_DB')) {
            if ( $year=="current"){
                 $year=date("Y");
             }
-           $sql = "select f.age_category as age_category, a.display_name as athlete_name,total as points,points_soc_grup,points_indiv,points_soc_qual from
+           $sql = "select a.display_name as athlete_name,total as points,points_soc_grup,points_indiv,points_soc_qual from
                     wp_users a join (
                     select a.id,sum(b.points_soc_grup) as points_soc_grup,
                     sum(b.points_indiv) as points_indiv, sum(b.points_soc_qual) as
                     points_soc_qual,
                     sum(b.points_soc_grup)+sum(b.points_indiv)+sum(b.points_soc_qual) as total
                     from wp_users a join wp_wpa_result b join wp_wpa_event c
-                    where a.id=b.user_id and b.event_id=c.id and date_format(c.date,'%Y')='%d'
+                    where a.id=b.user_id and b.event_id=c.id and date_format(c.date,'%Y')='2018'
                     group by a.id) d
-                    join (select e.user_id,max(e.age_category) as age_category from wp_wpa_result e group by user_id) f
-                    where a.ID=d.id and
-                    a.ID=f.user_id
+                    where a.ID=d.id
                     order by total desc";
             $results = $wpdb->get_results( $wpdb->prepare($sql,$year) );
 

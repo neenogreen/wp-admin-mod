@@ -97,7 +97,7 @@ if(!class_exists('WP_Athletics')) {
 			add_shortcode( 'wpa-simple-results', array( $this, 'do_simple_results' ) );
 			add_shortcode( 'wpa-simple-rankings', array( $this, 'do_simple_rankings' ) );
 			add_shortcode( 'wpa-classifica-qual', array( $this, 'do_classifica_qual' ) );
-			add_shortcode( 'wpa-classifica-soc', array( $this, 'do_classifica_soc' ) );
+			add_shortcode( 'wpa-classifica-partecipativa', array( $this, 'do_classifica_partecipativa' ) );
 			add_shortcode( 'wpa-roster', array( $this, 'do_roster' ) );
 			
 
@@ -424,10 +424,10 @@ if(!class_exists('WP_Athletics')) {
 		/**
 		 * Shortcode action for displaying club rank
 		 */
-		public function do_classifica_soc( $atts) {
+		public function do_classifica_partecipativa( $atts) {
 			ob_start();
 			$this->wpa_simple_shortcode = new WP_Athletics_Simple_Shortcodes( $this->wpa_db );
-			$this->wpa_simple_shortcode->display_class_soc( $atts );
+			$this->wpa_simple_shortcode->display_class_partecipativa( $atts );
 			$content = ob_get_clean();
 			return $content;
 		}
